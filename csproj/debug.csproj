@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <UserDefineConstants>DEBUG;TRACE;</UserDefineConstants>
+    <NetVer>v4.5</NetVer>
+    <RevitVer>2016</RevitVer>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <NetVer>v4.5</NetVer>
+    <RevitVer>2016</RevitVer>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == '2016Debug'">
+    <NetVer>v4.5</NetVer>
+    <RevitVer>2016</RevitVer>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == '2017Debug'">
+    <NetVer>v4.5.2</NetVer>
+    <RevitVer>2017</RevitVer>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == '2018Debug'">
+    <NetVer>v4.5.2</NetVer>
+    <RevitVer>2018</RevitVer>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == '2019Debug'">
+    <NetVer>v4.7</NetVer>
+    <RevitVer>2019</RevitVer>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == '2020Debug'">
+    <NetVer>v4.7</NetVer>
+    <RevitVer>2020</RevitVer>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == '2021Debug'">
+    <NetVer>v4.8</NetVer>
+    <RevitVer>2021</RevitVer>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == '2022Debug'">
+    <NetVer>v4.8</NetVer>
+    <RevitVer>2022</RevitVer>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <OutputPath>$(InstallPath)$(RevitVer)</OutputPath>
+    <TargetFrameworkVersion>$(NetVer)</TargetFrameworkVersion>
+    <DefineConstants>REVIT$(RevitVer);$(UserDefineConstants)</DefineConstants>
+  </PropertyGroup>
+</Project>

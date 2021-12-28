@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <DebugProjectPath>.\HWDebug.csproj</DebugProjectPath>
+    <ReleaseProjectPath>.\HWRelease.csproj</ReleaseProjectPath>
+  </PropertyGroup>
+
+  <!-- 配置 C#语言版本 -->
+  <PropertyGroup>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <!-- Debug的配置 -->
+  <Import Project="$(DebugProjectPath)" Condition="'$(Configuration)' == 'Debug'" />
+  <Import Project="$(DebugProjectPath)" Condition="'$(Configuration)' == '2016Debug'" />
+  <Import Project="$(DebugProjectPath)" Condition="'$(Configuration)' == '2017Debug'" />
+  <Import Project="$(DebugProjectPath)" Condition="'$(Configuration)' == '2018Debug'" />
+  <Import Project="$(DebugProjectPath)" Condition="'$(Configuration)' == '2019Debug'" />
+  <Import Project="$(DebugProjectPath)" Condition="'$(Configuration)' == '2020Debug'" />
+  <Import Project="$(DebugProjectPath)" Condition="'$(Configuration)' == '2021Debug'" />
+  <Import Project="$(DebugProjectPath)" Condition="'$(Configuration)' == '2022Debug'" />
+
+  <Import Project="$(DebugProjectPath)" Condition="'$(Configuration)' == 'Release'" />
+  <Import Project="$(ReleaseProjectPath)" Condition="'$(Configuration)' == '2016Release'" />
+  <Import Project="$(ReleaseProjectPath)" Condition="'$(Configuration)' == '2017Release'" />
+  <Import Project="$(ReleaseProjectPath)" Condition="'$(Configuration)' == '2018Release'" />
+  <Import Project="$(ReleaseProjectPath)" Condition="'$(Configuration)' == '2019Release'" />
+  <Import Project="$(ReleaseProjectPath)" Condition="'$(Configuration)' == '2020Release'" />
+  <Import Project="$(ReleaseProjectPath)" Condition="'$(Configuration)' == '2021Release'" />
+  <Import Project="$(ReleaseProjectPath)" Condition="'$(Configuration)' == '2022Release'" />
+</Project>
