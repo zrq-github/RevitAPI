@@ -1,9 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
-  <PropertyGroup>
-    <UserDefineConstants>TRACE;</UserDefineConstants>
-  </PropertyGroup>
+﻿<Project>
   
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <NetVer>v4.5</NetVer>
@@ -47,6 +42,6 @@
 
   <PropertyGroup>
     <TargetFrameworkVersion>$(NetVer)</TargetFrameworkVersion>
-    <DefineConstants>REVIT$(RevitVer);$(UserDefineConstants)</DefineConstants>
+    <DefineConstants>REVIT$(RevitVer)</DefineConstants>
   </PropertyGroup>
 </Project>
