@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32002.185
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRevtDotNet", "TestRevtDotNet\TestRevtDotNet.csproj", "{F0284835-AF82-4EDB-8711-C63444F5769C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RQ.Test.RevtDotNet", "TestRevtDotNet\RQ.Test.RevtDotNet.csproj", "{F0284835-AF82-4EDB-8711-C63444F5769C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8ED94579-2F0D-4B90-9B86-B148FF21E08B} = {8ED94579-2F0D-4B90-9B86-B148FF21E08B}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitTool", "RevitTool\RevitTool.csproj", "{8ED94579-2F0D-4B90-9B86-B148FF21E08B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RQ.RevitUtils", "RevitTool\RQ.RevitUtils.csproj", "{8ED94579-2F0D-4B90-9B86-B148FF21E08B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

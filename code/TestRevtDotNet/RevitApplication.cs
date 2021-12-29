@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace TestRevtDotNet
 {
     [ObfuscationAttribute(Exclude = true, ApplyToMembers = true)]
-    internal class RevitMain : IExternalApplication
+    internal class RevitApplication : IExternalApplication
     {
         public Result OnShutdown(UIControlledApplication application)
         {
@@ -25,7 +25,15 @@ namespace TestRevtDotNet
 
         public Result OnStartup(UIControlledApplication application)
         {
-            throw new NotImplementedException();
+            // 可停靠窗口注册
+            RegisterDockablePane(application);
+
+            return Result.Succeeded;
+        }
+
+        private void RegisterDockablePane(UIControlledApplication application)
+        {
+
         }
     }
 }
