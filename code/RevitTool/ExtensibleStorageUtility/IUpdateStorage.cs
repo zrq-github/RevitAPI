@@ -15,26 +15,25 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
     public enum UpdataState
     {
         /// <summary>
-        /// 成功
+        /// 最新的
         /// </summary>
-        /// <remarks>更新成功</remarks>
-        Succeed = 0,
+        Latest = 0,
         /// <summary>
-        /// 失败
+        /// 更新成功
         /// </summary>
-        /// <remarks>更新失败</remarks>
-        Fail = 1,
+        Succeed = 1,
+        /// <summary>
+        /// 更新失败
+        /// </summary>
+        Fail = 2,
         /// <summary>
         /// 跨类更新
         /// </summary>
-        /// <remarks>
-        /// 中间状态位
-        /// </remarks>
-        ClassUpdate = 2,
+        ClassUpdating = 3,
         /// <summary>
         /// 正在更新
         /// </summary>
-        Updating = 3,
+        Updating = 4,
     }
 
     public interface IUpdateStorage
@@ -61,13 +60,5 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         /// 因为反序列回来的数据是存着版本号
         /// </remarks>
         UpdataState UpdateData(Element ele = null);
-
-        /// <summary>
-        /// 跨类更新
-        /// </summary>
-        /// <remarks>
-        /// 从当前类更新到其他类型
-        /// </remarks>
-        object UpdataNewClass { get; set; }
     }
 }

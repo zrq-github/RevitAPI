@@ -103,10 +103,10 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
 
         private void ConstraintAddField(SchemaWrapper mySchemaWrapper, Guid schemaGuid, AccessLevel readLevel, AccessLevel writeLevle, string vendorId, string applicationId, string storageName, string storageVersion)
         {
-            mySchemaWrapper.AddField<string>(nameof(StorageVersion), GetUndefinedUnitType(), null);
-            mySchemaWrapper.AddField<IDictionary<string, string>>(nameof(StorageDictionary), GetUndefinedUnitType(), null);
-            mySchemaWrapper.AddField<IList<string>>(nameof(StorageList), GetUndefinedUnitType(), null);
-            mySchemaWrapper.AddField<string>(nameof(StorageString), GetUndefinedUnitType(), null);
+            mySchemaWrapper.AddField<string>(nameof(StorageVersion), GetUndefinedUnitType(), mySchemaWrapper);
+            mySchemaWrapper.AddField<IDictionary<string, string>>(nameof(StorageDictionary), GetUndefinedUnitType(), mySchemaWrapper);
+            mySchemaWrapper.AddField<IList<string>>(nameof(StorageList), GetUndefinedUnitType(), mySchemaWrapper);
+            mySchemaWrapper.AddField<string>(nameof(StorageString), GetUndefinedUnitType(), mySchemaWrapper);
         }
 #if (REVIT2016 || REVIT2017 || REVIT2018 || REVIT2019 || REVIT2020 || REVIT2021)
         public static UnitType GetLengthUnitType()
@@ -318,7 +318,9 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         /// 拿到字典里面的数据
         /// </summary>
         /// <remarks>
-        /// 如果没有扩展表，将返回 default(T)
+        /// 没有扩展表，将返回 default(T)
+        /// 没有数据，会自动调跨类更新
+        /// 有数据，会自动尝试调用更新
         /// </remarks>
         public T GetDictionary<T>(Element storageElement)
         {
@@ -334,27 +336,45 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
             T Object = Activator.CreateInstance<T>();
             IDictionary<string, string> iDictionary = entity.Get<IDictionary<string, string>>(fieldData);
 
-            Dictionary<string, string> dictionary = new Dictionary<string, string>(iDictionary);
             if (!iDictionary.TryGetValue(typeof(T).Name, out string json))
             {
-                Console.WriteLine($"{typeof(T).Name} does not exist");
+                Console.WriteLine($"{typeof(T).Name} does not exist,try to doing classUpdate");
+                {
+                    IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
+                    if (extendStorageBase != null)
+                    {
+                        extendStorageBase.UpdataState = UpdataState.ClassUpdating;
+                        UpdataState updataResult = extendStorageBase.UpdateData(storageElement);
+                        extendStorageBase.UpdataState = updataResult;
+
+                        // update succeed and save
+                        if (updataResult == UpdataState.Succeed)
+                        {
+                            SetDictionary<T>(storageElement, Object);
+                        }
+                    }
+                }
+
                 return Object;
             }
 
             Object = JsonConvert.DeserializeObject<T>(json);
 
-            // 判断一下启动数据更新流程
-            IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
-            if (extendStorageBase != null)
             {
-                UpdataState updataResult = extendStorageBase.UpdateData();
-                extendStorageBase.UpdataState = updataResult;
-
-                if (updataResult == UpdataState.Succeed)
+                // 判断一下启动数据更新流程
+                IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
+                if (extendStorageBase != null)
                 {
-                    SetDictionary<T>(storageElement, Object);//再次保存一下
+                    extendStorageBase.UpdataState = UpdataState.Updating;
+                    UpdataState updataResult = extendStorageBase.UpdateData();
+                    extendStorageBase.UpdataState = updataResult;
+
+                    if (updataResult == UpdataState.Succeed)
+                    {
+                        SetDictionary<T>(storageElement, Object);//再次保存一下
+                    }
+                    // 更新此次数据的更新状态
                 }
-                // 更新此次数据的更新状态
             }
 
             return Object;
@@ -366,24 +386,24 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         public void SetDictionary<T>(Element storageElement, T Object)
         {
             Schema schemaLookup = Schema.Lookup(SchemaGuid);
-            if (schemaLookup == null)
-            {
-                throw new Exception("Schema not found in current document.");
-            }
             Field fieldData = schemaLookup.GetField(nameof(StorageDictionary));
-            Entity storageElementEntityWrite = new Entity(SchemaGuid);
+            Entity entity = storageElement.GetEntity(schemaLookup);
+            if (entity.SchemaGUID != SchemaGuid)
+            {
+                entity = new Entity(SchemaGuid);
+            }
 
             // 判断原来有没有map
             Dictionary<string, string> keyValuePairs;
-            IDictionary<string, string> iDictionary = storageElementEntityWrite.Get<IDictionary<string, string>>(fieldData);
+            IDictionary<string, string> iDictionary = entity.Get<IDictionary<string, string>>(fieldData);
             keyValuePairs = new Dictionary<string, string>(iDictionary);
 
             string objectJson = JsonConvert.SerializeObject(Object);
             keyValuePairs[typeof(T).Name] = objectJson;
 
             string json = JsonConvert.SerializeObject(keyValuePairs);
-            storageElementEntityWrite.Set<IDictionary<string, string>>(fieldData, keyValuePairs);
-            storageElement.SetEntity(storageElementEntityWrite);
+            entity.Set<IDictionary<string, string>>(fieldData, keyValuePairs);
+            storageElement.SetEntity(entity);
         }
         #endregion
 

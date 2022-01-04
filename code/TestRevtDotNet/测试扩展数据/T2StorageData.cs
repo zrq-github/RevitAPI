@@ -26,7 +26,7 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
 
         public override UpdataState UpdateData(Element ele)
         {
-            if (this.UpdataState == UpdataState.ClassUpdate)
+            if (this.UpdataState == UpdataState.ClassUpdating)
             {
                 ExtendStorageTable extendStorageTable = new ExtendStorageTable();
                 T1StorageData t1StorageData = extendStorageTable.GetT1StorageData(ele);
