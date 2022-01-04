@@ -19,9 +19,13 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
     /// </summary>
     public abstract class ExtendStorageBase : IExtendStorageBase
     {
+        /// <summary>
+        /// 当前版本号
+        /// </summary>
         public abstract string CurVersion { get; set; }
         public virtual object UpdataNewClass { get; set; } = null;
-        public abstract UpdataResult UpdataState { get; set; }
-        public abstract UpdataResult UpdateData();
+        public abstract UpdataState UpdataState { get; set; }
+
+        public abstract UpdataState UpdateData(Element ele);
     }
 }

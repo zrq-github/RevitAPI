@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 namespace RQ.RevitUtils.ExtensibleStorageUtility
 {
     /// <summary>
-    /// 更新的结果
+    /// 更新的状态
     /// </summary>
     /// <remarks>
-    /// Succeed：更新成功
-    /// Fail： 更新失败
     /// </remarks>
-    public enum UpdataResult
+    public enum UpdataState
     {
         /// <summary>
         /// 成功
@@ -26,7 +24,17 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         /// </summary>
         /// <remarks>更新失败</remarks>
         Fail = 1,
-
+        /// <summary>
+        /// 跨类更新
+        /// </summary>
+        /// <remarks>
+        /// 中间状态位
+        /// </remarks>
+        ClassUpdate = 2,
+        /// <summary>
+        /// 正在更新
+        /// </summary>
+        Updating = 3,
     }
 
     public interface IUpdateStorage
@@ -34,19 +42,25 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         /// <summary>
         /// 版本号
         /// </summary>
-        /// <remarks>默认应该为1.0</remarks>
         string CurVersion { get; set; }
 
         /// <summary>
         /// 更新状态
         /// </summary>
-        UpdataResult UpdataState { get; set; }
+        /// <remarks>
+        /// 非必要，请勿手动更改此状态
+        /// </remarks>
+        [Newtonsoft.Json.JsonIgnore]
+        UpdataState UpdataState { get; set; }
 
         /// <summary>
-        /// 更新数据
+        /// 更新函数
         /// </summary>
-        /// <remarks>默认返回false</remarks>
-        UpdataResult UpdateData();
+        /// <remarks>
+        /// 在构造函数设置当前序列号，在更新的时候是没有任何作用
+        /// 因为反序列回来的数据是存着版本号
+        /// </remarks>
+        UpdataState UpdateData(Element ele = null);
 
         /// <summary>
         /// 跨类更新

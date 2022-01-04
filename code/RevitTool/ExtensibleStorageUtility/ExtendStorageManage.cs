@@ -347,10 +347,10 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
             IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
             if (extendStorageBase != null)
             {
-                UpdataResult updataResult = extendStorageBase.UpdateData();
+                UpdataState updataResult = extendStorageBase.UpdateData();
                 extendStorageBase.UpdataState = updataResult;
 
-                if (updataResult == UpdataResult.Succeed)
+                if (updataResult == UpdataState.Succeed)
                 {
                     SetDictionary<T>(storageElement, Object);//再次保存一下
                 }

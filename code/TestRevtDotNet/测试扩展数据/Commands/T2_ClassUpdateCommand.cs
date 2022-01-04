@@ -1,11 +1,10 @@
 ﻿/*************************************************************************************
  *
  * 创建人员:  zrq 
- * 创建时间:  2022/1/2 21:15:09
+ * 创建时间:  2022/1/4 15:38:05
  * 文件描述:  
  * 
 *************************************************************************************/
-using Autodesk.Revit.Attributes;
 using RQ.RevitUtils.ExternalEventUtility;
 using System;
 using System.Collections.Generic;
@@ -15,10 +14,9 @@ using System.Threading.Tasks;
 
 namespace RQ.Test.RevtDotNet.测试扩展数据.Commands
 {
-    [Transaction(TransactionMode.Manual)]
-    internal class T1_GetStorageCommand : IExternalEventBase
+    internal class T2_ClassUpdateCommand : IExternalEventBase
     {
-        public T1_GetStorageCommand(TestStorageWinModel testStorageWinModel)
+        public T2_ClassUpdateCommand(TestStorageWinModel testStorageWinModel)
         {
             TestStorageWinModel = testStorageWinModel;
         }
@@ -30,19 +28,19 @@ namespace RQ.Test.RevtDotNet.测试扩展数据.Commands
             Document doc = app.ActiveUIDocument.Document;
             Element selEle = doc.GetElement(new ElementId(TestStorageWinModel.TestElementId));
 
-            Transaction transaction = new Transaction(doc, nameof(T1_SetStorageCommand));
+            Transaction transaction = new Transaction(doc, nameof(T2_ClassUpdateCommand));
             transaction.Start();
 
-            T1StorageData storage_Person = null;
+            T2StorageData storage_Person = null;
             ExtendStorageTable extendStorageTable = new ExtendStorageTable();
-            storage_Person = extendStorageTable.GetT1StorageData(selEle);
+            storage_Person = extendStorageTable.GetT2StorageData(selEle);
 
             transaction.Commit();
         }
 
         public string GetName()
         {
-            return nameof(T1_GetStorageCommand);
+            return nameof(T2_ClassUpdateCommand);
         }
     }
 }

@@ -30,15 +30,31 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
         // 一是方便自己知道，这个表中存了那些数据
         // 二是方面通过引用，找到指定的数据类在那些地方被修改了
 
-        internal bool SetStoragePerson(Element element, T1StorageData elevation)
+        internal bool SetT1StorageData(Element element, T1StorageData elevation)
         {
             SetDictionary(element, elevation);
             return true;
         }
 
-        internal T1StorageData GetStoragePerson(Element element)
+        internal T1StorageData GetT1StorageData(Element element)
         {
             T1StorageData elevation = GetDictionary<T1StorageData>(element);
+            if (elevation == null)
+            {
+                // 记日志
+            }
+            return elevation;
+        }
+
+        internal bool SetT2StorageData(Element element, T2StorageData elevation)
+        {
+            SetDictionary(element, elevation);
+            return true;
+        }
+
+        internal T2StorageData GetT2StorageData(Element element)
+        {
+            T2StorageData elevation = GetDictionary<T2StorageData>(element);
             if (elevation == null)
             {
                 // 记日志

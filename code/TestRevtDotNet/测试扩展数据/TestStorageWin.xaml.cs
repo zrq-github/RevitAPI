@@ -56,5 +56,11 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
         {
             T1StorageData.IsStarUpdata = false;
         }
+
+        private void btn_ClassUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            ExternalEventHandler.IEventBase = new T2_ClassUpdateCommand(TestStorageWinModel);
+            ExternalEventHandler.Event.Raise();
+        }
     }
 }
