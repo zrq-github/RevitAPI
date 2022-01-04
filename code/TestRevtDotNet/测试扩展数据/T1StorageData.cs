@@ -38,7 +38,8 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
             if (CurVersion == "1.0")
             {
                 // 升级数据结构
-
+                CurVersion = "2.0";
+                StorageDataDescription = $"this is a {nameof(T1StorageData)} Class, already update 2.0";
             }
             return UpdataResult.Succeed;
         }
