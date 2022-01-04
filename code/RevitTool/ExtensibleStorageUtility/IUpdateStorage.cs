@@ -17,6 +17,9 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         /// <summary>
         /// 最新的
         /// </summary>
+        /// <remarks>
+        /// 合理调用这个会减少序列化操作
+        /// </remarks>
         Latest = 0,
         /// <summary>
         /// 更新成功

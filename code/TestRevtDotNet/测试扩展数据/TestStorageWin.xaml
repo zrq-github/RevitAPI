@@ -15,6 +15,7 @@
         <Button x:Name="btn_StartUpdate" Content="启用更新测试" HorizontalAlignment="Left" Margin="20,83,0,0" VerticalAlignment="Top" Click="btn_StartUpdate_Click"/>
         <Button x:Name="btn_CloseUpdate" Content="关闭更新测试" HorizontalAlignment="Left" Margin="20,107,0,0" VerticalAlignment="Top" Click="btn_CloseUpdate_Click"/>
         <Button x:Name="btn_ClassUpdate" Content="跨类更新" HorizontalAlignment="Left" Margin="20,144,0,0" VerticalAlignment="Top" Click="btn_ClassUpdate_Click"/>
+        <Button x:Name="btn_ClearStorage" Click="btn_ClearStorage_Click" Content="清楚扩展" HorizontalAlignment="Left" Margin="20,175,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

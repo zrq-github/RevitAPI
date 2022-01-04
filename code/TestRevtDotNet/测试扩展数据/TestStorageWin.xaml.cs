@@ -62,5 +62,11 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
             ExternalEventHandler.IEventBase = new T2_ClassUpdateCommand(TestStorageWinModel);
             ExternalEventHandler.Event.Raise();
         }
+
+        private void btn_ClearStorage_Click(object sender, RoutedEventArgs e)
+        {
+            ExternalEventHandler.IEventBase = new T1_ClearStorageCommand(TestStorageWinModel);
+            ExternalEventHandler.Event.Raise();
+        }
     }
 }

@@ -26,28 +26,25 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
 
         public override UpdataState UpdateData(Element ele)
         {
+            UpdataState updataState = UpdataState.Fail;
+
             if (this.UpdataState == UpdataState.ClassUpdating)
             {
                 ExtendStorageTable extendStorageTable = new ExtendStorageTable();
                 T1StorageData t1StorageData = extendStorageTable.GetT1StorageData(ele);
                 this.StorageDataDescription += t1StorageData.StorageDataDescription;
-
-                return UpdataState.Succeed;
+                updataState = UpdataState.Succeed;
             }
 
             if (this.UpdataState == UpdataState.Updating)
             {
                 if (this.CurVersion == "1.0")
                 {
-                    return UpdataState.Succeed;
-                }
-                else
-                {
-                    return UpdataState.Fail;
+                    updataState = UpdataState.Latest;
                 }
             }
 
-            return UpdataState.Fail;
+            return updataState;
         }
     }
 }

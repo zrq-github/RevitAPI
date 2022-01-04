@@ -338,23 +338,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
 
             if (!iDictionary.TryGetValue(typeof(T).Name, out string json))
             {
-                Console.WriteLine($"{typeof(T).Name} does not exist,try to doing classUpdate");
-                {
-                    IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
-                    if (extendStorageBase != null)
-                    {
-                        extendStorageBase.UpdataState = UpdataState.ClassUpdating;
-                        UpdataState updataResult = extendStorageBase.UpdateData(storageElement);
-                        extendStorageBase.UpdataState = updataResult;
-
-                        // update succeed and save
-                        if (updataResult == UpdataState.Succeed)
-                        {
-                            SetDictionary<T>(storageElement, Object);
-                        }
-                    }
-                }
-
+                TryClassUpdate(storageElement, Object);
                 return Object;
             }
 
@@ -378,6 +362,28 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
             }
 
             return Object;
+        }
+
+        /// <summary>
+        /// 尝试跨类更新
+        /// </summary>
+        private void TryClassUpdate<T>(Element storageElement, T Object)
+        {
+            Console.WriteLine($"{typeof(T).Name} does not exist,try to doing classUpdate");
+
+            IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
+            if (extendStorageBase != null)
+            {
+                extendStorageBase.UpdataState = UpdataState.ClassUpdating;
+                UpdataState updataResult = extendStorageBase.UpdateData(storageElement);
+                extendStorageBase.UpdataState = updataResult;
+
+                // update succeed and save
+                if (updataResult == UpdataState.Succeed)
+                {
+                    SetDictionary<T>(storageElement, Object);
+                }
+            }
         }
 
         /// <summary>

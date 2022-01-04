@@ -37,6 +37,7 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
             }
             #endregion
 
+            UpdataState updataState = UpdataState.Fail;
             if (this.UpdataState == UpdataState.Updating)
             {
                 if (CurVersion == "1.0")
@@ -44,12 +45,15 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
                     // 升级数据结构
                     CurVersion = "2.0";
                     StorageDataDescription = $"this is a {nameof(T1StorageData)} Class, already update 2.0";
+                    updataState = UpdataState.Succeed;
                 }
-
-                return UpdataState.Succeed;
+                else if (CurVersion == "2.0")
+                {
+                    updataState = UpdataState.Latest;
+                }
             }
 
-            return UpdataState.Fail;
+            return updataState;
         }
     }
 }
