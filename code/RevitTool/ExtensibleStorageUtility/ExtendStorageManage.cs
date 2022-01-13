@@ -338,26 +338,26 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
 
             if (!iDictionary.TryGetValue(typeof(T).Name, out string json))
             {
-                TryClassUpdate(storageElement, Object);
+                //TryClassUpdate(storageElement, Object);
                 return Object;
             }
 
             Object = JsonConvert.DeserializeObject<T>(json);
 
+            // 判断一下启动数据更新流程
+            IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
+            if (extendStorageBase != null)
             {
-                // 判断一下启动数据更新流程
-                IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
-                if (extendStorageBase != null)
+                int latestVersion = extendStorageBase.GetLatestVersion();
+                if (latestVersion > extendStorageBase.CurVersion)
                 {
                     extendStorageBase.UpdataState = UpdataState.Updating;
                     UpdataState updataResult = extendStorageBase.UpdateData();
                     extendStorageBase.UpdataState = updataResult;
-
                     if (updataResult == UpdataState.Succeed)
                     {
                         SetDictionary<T>(storageElement, Object);//再次保存一下
                     }
-                    // 更新此次数据的更新状态
                 }
             }
 
@@ -365,7 +365,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         }
 
         /// <summary>
-        /// 尝试跨类更新
+        /// 尝试跨类更新(暂时不开放)
         /// </summary>
         private void TryClassUpdate<T>(Element storageElement, T Object)
         {

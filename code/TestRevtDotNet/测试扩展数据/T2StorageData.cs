@@ -17,28 +17,25 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
     {
         public T2StorageData()
         {
-            CurVersion = "1.0";
+            CurVersion = 1;
             StorageDataDescription = $"this is a {nameof(T2StorageData)} Class, it update form {nameof(T1StorageData)}";
         }
-        public override string CurVersion { get; set; }
+        public override int CurVersion { get; set; }
         public string StorageDataDescription { get; private set; }
         public override UpdataState UpdataState { get; set; }
+
+        public override int GetLatestVersion()
+        {
+            return 1;
+        }
 
         public override UpdataState UpdateData(Element ele)
         {
             UpdataState updataState = UpdataState.Fail;
 
-            if (this.UpdataState == UpdataState.ClassUpdating)
-            {
-                ExtendStorageTable extendStorageTable = new ExtendStorageTable();
-                T1StorageData t1StorageData = extendStorageTable.GetT1StorageData(ele);
-                this.StorageDataDescription += t1StorageData.StorageDataDescription;
-                updataState = UpdataState.Succeed;
-            }
-
             if (this.UpdataState == UpdataState.Updating)
             {
-                if (this.CurVersion == "1.0")
+                if (this.CurVersion == 1)
                 {
                     updataState = UpdataState.Latest;
                 }

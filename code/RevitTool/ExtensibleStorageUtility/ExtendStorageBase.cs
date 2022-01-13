@@ -22,8 +22,11 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         /// <summary>
         /// 当前版本号
         /// </summary>
-        public abstract string CurVersion { get; set; }
+        public abstract int CurVersion { get; set; }
         public abstract UpdataState UpdataState { get; set; }
+
         public abstract UpdataState UpdateData(Element ele);
+
+        public abstract int GetLatestVersion();
     }
 }

@@ -20,14 +20,21 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
 
         public T1StorageData()
         {
-            CurVersion = "1.0";
+            CurVersion = 1;
             StorageDataDescription = $"this is a {nameof(T1StorageData)} Class";
         }
 
-        public override string CurVersion { get; set; }
+        public override int CurVersion { get; set; }
+
         public string LastCommand { get; set; }
         public string StorageDataDescription { get; set; }
         public override UpdataState UpdataState { get; set; }
+
+        public override int GetLatestVersion()
+        {
+            return 2;
+        }
+
         public override UpdataState UpdateData(Element ele)
         {
             #region 测试入口
@@ -40,14 +47,14 @@ namespace RQ.Test.RevtDotNet.测试扩展数据
             UpdataState updataState = UpdataState.Fail;
             if (this.UpdataState == UpdataState.Updating)
             {
-                if (CurVersion == "1.0")
+                if (CurVersion == 1)
                 {
                     // 升级数据结构
-                    CurVersion = "2.0";
+                    CurVersion = 2;
                     StorageDataDescription = $"this is a {nameof(T1StorageData)} Class, already update 2.0";
                     updataState = UpdataState.Succeed;
                 }
-                else if (CurVersion == "2.0")
+                else if (CurVersion == 2)
                 {
                     updataState = UpdataState.Latest;
                 }

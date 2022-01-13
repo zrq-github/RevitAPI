@@ -34,8 +34,14 @@ namespace RQ.Test.RevtDotNet.测试扩展数据.Commands
             transaction.Start();
             T1StorageData storage_Person = new T1StorageData();
             storage_Person.LastCommand = nameof(T1_SetStorageCommand);
+
             ExtendStorageTable extendStorageTable = new ExtendStorageTable();
             extendStorageTable.SetT1StorageData(selEle, storage_Person);
+
+            A a = new A();
+            extendStorageTable.SetDictionary(selEle, a);
+
+
             transaction.Commit();
         }
 

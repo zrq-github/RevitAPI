@@ -15,10 +15,11 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
     public enum UpdataState
     {
         /// <summary>
-        /// 最新的
+        /// 最新的(暂留)
         /// </summary>
         /// <remarks>
         /// 合理调用这个会减少序列化操作
+        /// 因为判断最新的版本由另外的方式，这个不在需要
         /// </remarks>
         Latest = 0,
         /// <summary>
@@ -30,13 +31,13 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         /// </summary>
         Fail = 2,
         /// <summary>
-        /// 跨类更新
-        /// </summary>
-        ClassUpdating = 3,
-        /// <summary>
         /// 正在更新
         /// </summary>
-        Updating = 4,
+        Updating = 3,
+        /// <summary>
+        /// 跨类更新(预留，暂时不使用)
+        /// </summary>
+        ClassUpdating = 4,
     }
 
     public interface IUpdateStorage
@@ -44,7 +45,9 @@ namespace RQ.RevitUtils.ExtensibleStorageUtility
         /// <summary>
         /// 版本号
         /// </summary>
-        string CurVersion { get; set; }
+        int CurVersion { get; set; }
+
+        int GetLatestVersion();
 
         /// <summary>
         /// 更新状态

@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RQ.Test.RevtDotNet", "TestR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RQ.RevitUtils", "RevitTool\RQ.RevitUtils.csproj", "{8ED94579-2F0D-4B90-9B86-B148FF21E08B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RQ.ConsoleApp", "ConsoleApp\RQ.ConsoleApp.csproj", "{55E91A29-1572-4EFF-B099-518CBB40AFA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,14 @@ Global
 		{8ED94579-2F0D-4B90-9B86-B148FF21E08B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8ED94579-2F0D-4B90-9B86-B148FF21E08B}.Release|x64.ActiveCfg = Release|Any CPU
 		{8ED94579-2F0D-4B90-9B86-B148FF21E08B}.Release|x64.Build.0 = Release|Any CPU
+		{55E91A29-1572-4EFF-B099-518CBB40AFA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E91A29-1572-4EFF-B099-518CBB40AFA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E91A29-1572-4EFF-B099-518CBB40AFA5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{55E91A29-1572-4EFF-B099-518CBB40AFA5}.Debug|x64.Build.0 = Debug|Any CPU
+		{55E91A29-1572-4EFF-B099-518CBB40AFA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E91A29-1572-4EFF-B099-518CBB40AFA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E91A29-1572-4EFF-B099-518CBB40AFA5}.Release|x64.ActiveCfg = Release|Any CPU
+		{55E91A29-1572-4EFF-B099-518CBB40AFA5}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
