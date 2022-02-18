@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.ExtensibleStorage;
 using Newtonsoft.Json;
-using RQ.RevitUtils.ExtensibleStorageUtility.SchemaWrapperTools;
+using RQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RQ.RevitUtils.ExtensibleStorageUtility
+namespace RQ.RevitUtils.ExtensibleStorageUtils
 {
     [Serializable]
     /// <summary>

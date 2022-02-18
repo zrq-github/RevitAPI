@@ -7,9 +7,9 @@ using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Text;
-using RQ.RevitUtils.ExtensibleStorageUtility;
+using RQ.RevitUtils.ExtensibleStorageUtils;
 
-namespace RQ.RevitUtils.ExtensibleStorageUtility.SchemaWrapperTools
+namespace RQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
 {
     /// <summary>
     /// This class provides a simpler level of access to the

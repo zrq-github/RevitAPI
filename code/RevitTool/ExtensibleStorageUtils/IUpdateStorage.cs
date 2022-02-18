@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RQ.RevitUtils.ExtensibleStorageUtility
+namespace RQ.RevitUtils.ExtensibleStorageUtils
 {
     /// <summary>
     /// 更新的状态
