@@ -1,0 +1,20 @@
+﻿<Window x:Class="RQ.Test.RevtDotNet.测试部件Transfrom.Commands.TestAssemblyTransfromPlane"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RQ.Test.RevtDotNet.测试部件Transfrom.Commands"
+        mc:Ignorable="d"
+        Title="T0_ShowWin" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="label" Content="部件ID:" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" d:Text="部件ID:" HorizontalAlignment="Left" Margin="64,29,0,0" TextWrapping="Wrap" Text="{Binding AssemblyId}" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="button" Content="逆时针旋转45-唯一部件-旋转一次-一次事务" HorizontalAlignment="Left" Margin="23,66,0,0" VerticalAlignment="Top" Click="button_Click"/>
+        <Button x:Name="button_Copy" Content="逆时针旋转45_唯一部件_旋转二次_一次事务" HorizontalAlignment="Left" Margin="23,90,0,0" VerticalAlignment="Top" Click="button_Copy_Click"/>
+        <Button x:Name="button_Copy1" Content="逆时针旋转45_唯一部件_旋转二次_二次事务" HorizontalAlignment="Left" Margin="23,114,0,0" VerticalAlignment="Top" Click="button_Copy1_Click"/>
+        <Label x:Name="label1" Content="部件2ID:" HorizontalAlignment="Left" Margin="200,25,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox1" d:Text="部件2ID" HorizontalAlignment="Left" Margin="257,29,0,0" TextWrapping="Wrap" Text="{Binding Assembly2Id}" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="button1" Content="逆旋45_双实例_单次事务" HorizontalAlignment="Left" Margin="23,146,0,0" VerticalAlignment="Top" Click="button1_Click"/>
+        <Button x:Name="button2" Content="旋转部件" HorizontalAlignment="Left" Margin="23,186,0,0" VerticalAlignment="Top" Click="button2_Click"/>
+    </Grid>
+</Window>

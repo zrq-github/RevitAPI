@@ -12,8 +12,6 @@ using RQ.RevitUtils;
 using RQ.RevitUtils.ExternalEventUtility;
 using RQ.Test.RevtDotNet;
 using RQ.Test.RevtDotNet.Commands;
-using RQ.Test.RevtDotNet.测试扩展数据;
-using RQ.Test.RevtDotNet.测试扩展数据.Commands;
 
 namespace TestRevtDotNet
 {
@@ -36,7 +34,7 @@ namespace TestRevtDotNet
             pullDownButton.SetImage("/RevitLookup;component/Resources/Images/RibbonIcon16.png");
             pullDownButton.SetLargeImage("/RevitLookup;component/Resources/Images/RibbonIcon32.png");
             pullDownButton.AddPushButton(typeof(HelloWorldCommand), "Hello World...");
-            pullDownButton.AddPushButton(typeof(T0_ShowWin), "测试扩展数据");
+            //pullDownButton.AddPushButton(typeof(T0_ShowWin), "测试扩展数据");
         }
 
         public Result OnStartup(UIControlledApplication application)

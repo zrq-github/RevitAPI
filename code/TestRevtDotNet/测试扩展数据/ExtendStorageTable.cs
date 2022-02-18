@@ -7,7 +7,7 @@
 *************************************************************************************/
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.ExtensibleStorage;
-using RQ.RevitUtils.ExtensibleStorageUtility;
+using RQ.RevitUtils.ExtensibleStorageUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
