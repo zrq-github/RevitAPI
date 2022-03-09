@@ -9,7 +9,10 @@ namespace RQ.RevitUtils
 {
     internal class ConnectorUtils
     {
-        private static Connector GetMainConnector(FamilyInstance fit)
+        /// <summary>
+        /// 获取主连接点
+        /// </summary>
+        private static Connector GetMajorConnector(FamilyInstance fit)
         {
             Connector mainConnector = null;
             ConnectorSet fitConnSets = fit.MEPModel.ConnectorManager.Connectors;
