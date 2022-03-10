@@ -17,7 +17,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
     /// <summary>
     /// IUpdateStorage的默认实现
     /// </summary>
-    public abstract class ExtendStorageBase : IExtendStorageBase
+    public abstract class ExtendStorageBase : IExtendStorageBase, IUpdateStorage
     {
         /// <summary>
         /// 当前版本号

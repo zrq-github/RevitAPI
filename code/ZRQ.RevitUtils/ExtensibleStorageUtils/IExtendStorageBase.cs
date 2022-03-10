@@ -10,7 +10,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
     /// <summary>
     /// 扩展数据的基本接口
     /// </summary>
-    public interface IExtendStorageBase : IUpdateStorage
+    public interface IExtendStorageBase
     {
     }
 }

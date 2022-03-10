@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZRQ.RevitAPI", "ZRQ.RevitAPI.csproj", "{769D35F3-1267-479C-BE9D-BC3F2DFA565F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZRQ.RevitAPI", "ZRQ.RevitAPI.csproj", "{769D35F3-1267-479C-BE9D-BC3F2DFA565F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZRQ.RevitAPI.Test", "..\ZRQ.RevitAPI.Test\ZRQ.RevitAPI.Test.csproj", "{9241C131-A33C-43A9-9904-8C52F51FE802}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZRQ.RevitUtils", "..\ZRQ.RevitUtils\ZRQ.RevitUtils.csproj", "{6E590A23-F1E8-4AC6-ADB4-5DE47846CA00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{769D35F3-1267-479C-BE9D-BC3F2DFA565F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{769D35F3-1267-479C-BE9D-BC3F2DFA565F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{769D35F3-1267-479C-BE9D-BC3F2DFA565F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9241C131-A33C-43A9-9904-8C52F51FE802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9241C131-A33C-43A9-9904-8C52F51FE802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9241C131-A33C-43A9-9904-8C52F51FE802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9241C131-A33C-43A9-9904-8C52F51FE802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E590A23-F1E8-4AC6-ADB4-5DE47846CA00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E590A23-F1E8-4AC6-ADB4-5DE47846CA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E590A23-F1E8-4AC6-ADB4-5DE47846CA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E590A23-F1E8-4AC6-ADB4-5DE47846CA00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

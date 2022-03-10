@@ -14,8 +14,8 @@ using System.Threading.Tasks;
 
 namespace RQ.Test.RevtDotNet.Commands
 {
-    [Transaction(TransactionMode.Manual)]
-    public class HelloWorldCommand : IExternalCommand
+        [Transaction(TransactionMode.Manual)]
+        public class HelloWorldCommand : IExternalCommand
     {
         public Result Execute(ExternalCommandData cmdData, ref string msg, ElementSet elems)
         {

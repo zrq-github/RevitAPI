@@ -345,7 +345,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
             Object = JsonConvert.DeserializeObject<T>(json);
 
             // 判断一下启动数据更新流程
-            IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
+            IUpdateStorage extendStorageBase = Object as IUpdateStorage;
             if (extendStorageBase != null)
             {
                 int latestVersion = extendStorageBase.GetLatestVersion();
@@ -371,7 +371,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
         {
             Console.WriteLine($"{typeof(T).Name} does not exist,try to doing classUpdate");
 
-            IExtendStorageBase extendStorageBase = Object as IExtendStorageBase;
+            IUpdateStorage extendStorageBase = Object as IUpdateStorage;
             if (extendStorageBase != null)
             {
                 extendStorageBase.UpdataState = UpdataState.ClassUpdating;
