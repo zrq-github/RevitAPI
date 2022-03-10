@@ -9,7 +9,7 @@ namespace ZRQ.RevitUtils
     /// <summary>
     /// 明细表的操作
     /// </summary>
-    internal class ViewShceduleUtils
+    internal class ViewScheduleUtils
     {
         public static void AddField(ViewSchedule view, string fieldName, int index)
         {
