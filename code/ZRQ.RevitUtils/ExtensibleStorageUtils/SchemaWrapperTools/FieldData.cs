@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
+namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
 {
     /// <summary>
     /// A class to store schema field information

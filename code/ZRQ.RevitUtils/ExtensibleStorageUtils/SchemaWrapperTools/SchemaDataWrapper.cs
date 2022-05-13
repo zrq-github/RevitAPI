@@ -3,7 +3,7 @@ using Autodesk.Revit.DB.ExtensibleStorage;
 using System;
 using System.Collections.Generic;
 
-namespace RQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
+namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
 {
     /// <summary>
     /// A class to store a list of FieldData objects as well as the top level data (name, access levels, SchemaId, etc..)

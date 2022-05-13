@@ -115,9 +115,6 @@ namespace ZRQ.RevitAPI.Test
 
             return listfitting;
         }
-
-
-
         public static List<FamilyInstance> GetDuctFitting(Duct duct, bool bNeedSAndECon = false)
         {
             Document doc = duct.Document;
@@ -173,8 +170,6 @@ namespace ZRQ.RevitAPI.Test
             }
             return listfitting;
         }
-
-
         /// <summary>
         /// 得到与给定连接器相连接的另一个连接器
         /// </summary>

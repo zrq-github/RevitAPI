@@ -1,15 +1,15 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.ExtensibleStorage;
 using Newtonsoft.Json;
-using RQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools;
 
-namespace RQ.RevitUtils.ExtensibleStorageUtils
+namespace ZRQ.RevitUtils.ExtensibleStorageUtils
 {
     [Serializable]
     /// <summary>
@@ -87,7 +87,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
             }
             else
             {
-                SchemaWrapperTools.SchemaWrapper mySchemaWrapper = SchemaWrapperTools.SchemaWrapper.NewSchema(SchemaGuid, ReadLevel, WriteLevle, VendorId, ApplicationId, StorageName, StorageVersion);
+                SchemaWrapper mySchemaWrapper = SchemaWrapper.NewSchema(SchemaGuid, ReadLevel, WriteLevle, VendorId, ApplicationId, StorageName, StorageVersion);
 
                 // 每个扩展数据必须需要的字段
                 ConstraintAddField(mySchemaWrapper, SchemaGuid, ReadLevel, WriteLevle, VendorId, ApplicationId, StorageName, StorageVersion);
@@ -140,7 +140,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
         /// 每个产品自己控制生成表格类型
         /// 这个虚函数内部写的是例子
         /// </remarks>
-        protected virtual void CreateField(SchemaWrapperTools.SchemaWrapper mySchemaWrapper, Guid schemaId, AccessLevel readAccess, AccessLevel writeAccess, string vendorId, string applicationId, string storageName, string storageVersion)
+        protected virtual void CreateField(SchemaWrapper mySchemaWrapper, Guid schemaId, AccessLevel readAccess, AccessLevel writeAccess, string vendorId, string applicationId, string storageName, string storageVersion)
         {
             #region Field names and schema guids used in sample schemas
             string int0Name = "int0Name";
@@ -196,24 +196,24 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
             mySchemaWrapper.AddField<IList<bool>>(array0Name, GetUndefinedUnitType(), null);
 
             //Create a sample subEntity
-            SchemaWrapperTools.SchemaWrapper mySubSchemaWrapper0 = SchemaWrapperTools.SchemaWrapper.NewSchema(subEntityGuid0, readAccess, writeAccess, vendorId, applicationId, entity0Name, "A sub entity");
+            SchemaWrapper mySubSchemaWrapper0 = SchemaWrapper.NewSchema(subEntityGuid0, readAccess, writeAccess, vendorId, applicationId, entity0Name, "A sub entity");
             mySubSchemaWrapper0.AddField<int>("subInt0", GetUndefinedUnitType(), null);
             mySubSchemaWrapper0.FinishSchema();
             Entity subEnt0 = new Entity(mySubSchemaWrapper0.GetSchema());
-            subEnt0.Set<int>(mySubSchemaWrapper0.GetSchema().GetField("subInt0"), 11);
+            subEnt0.Set(mySubSchemaWrapper0.GetSchema().GetField("subInt0"), 11);
             mySchemaWrapper.AddField<Entity>(entity0Name, GetUndefinedUnitType(), mySubSchemaWrapper0);
 
             //
             //Create a sample map of subEntities (An IDictionary<> with key type "int" and value type "Entity")
             //
             //Create a new sample schema.
-            SchemaWrapperTools.SchemaWrapper mySubSchemaWrapper1_Map = SchemaWrapperTools.SchemaWrapper.NewSchema(subEntityGuid_Map1, readAccess, writeAccess, vendorId, applicationId, map1Name, "A map of int to Entity");
+            SchemaWrapper mySubSchemaWrapper1_Map = SchemaWrapper.NewSchema(subEntityGuid_Map1, readAccess, writeAccess, vendorId, applicationId, map1Name, "A map of int to Entity");
             mySubSchemaWrapper1_Map.AddField<int>("subInt1", GetUndefinedUnitType(), null);
             mySubSchemaWrapper1_Map.FinishSchema();
             //Create a new sample Entity.
             Entity subEnt1 = new Entity(mySubSchemaWrapper1_Map.GetSchema());
             //Set data in that entity.
-            subEnt1.Set<int>(mySubSchemaWrapper1_Map.GetSchema().GetField("subInt1"), 22);
+            subEnt1.Set(mySubSchemaWrapper1_Map.GetSchema().GetField("subInt1"), 22);
             //Add a new map field to the top-level Schema.  We will add the entity we just created after all top-level
             //fields are created.
             mySchemaWrapper.AddField<IDictionary<int, Entity>>(map1Name, GetUndefinedUnitType(), mySubSchemaWrapper1_Map);
@@ -223,13 +223,13 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
             //Create a sample array of subentities (An IList<> of type "Entity")
             //
             //Create a new sample schema
-            SchemaWrapperTools.SchemaWrapper mySubSchemaWrapper2_Array = SchemaWrapperTools.SchemaWrapper.NewSchema(subEntityGuid_Array2, readAccess, writeAccess, vendorId, applicationId, array1Name, "An array of Entities");
+            SchemaWrapper mySubSchemaWrapper2_Array = SchemaWrapper.NewSchema(subEntityGuid_Array2, readAccess, writeAccess, vendorId, applicationId, array1Name, "An array of Entities");
             mySubSchemaWrapper2_Array.AddField<int>("subInt2", GetUndefinedUnitType(), null);
             mySubSchemaWrapper2_Array.FinishSchema();
             //Create a new sample Entity.
             Entity subEnt2 = new Entity(mySubSchemaWrapper2_Array.GetSchema());
             //Set the data in that Entity.
-            subEnt2.Set<int>(mySubSchemaWrapper2_Array.GetSchema().GetField("subInt2"), 33);
+            subEnt2.Set(mySubSchemaWrapper2_Array.GetSchema().GetField("subInt2"), 33);
             //Add a new array field to the top-level Schema We will add the entity we just crated after all top-level fields
             //are created.
             mySchemaWrapper.AddField<IList<Entity>>(array1Name, GetUndefinedUnitType(), mySubSchemaWrapper2_Array);
@@ -356,7 +356,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
                     extendStorageBase.UpdataState = updataResult;
                     if (updataResult == UpdataState.Succeed)
                     {
-                        SetDictionary<T>(storageElement, Object);//再次保存一下
+                        SetDictionary(storageElement, Object);//再次保存一下
                     }
                 }
             }
@@ -381,7 +381,7 @@ namespace RQ.RevitUtils.ExtensibleStorageUtils
                 // update succeed and save
                 if (updataResult == UpdataState.Succeed)
                 {
-                    SetDictionary<T>(storageElement, Object);
+                    SetDictionary(storageElement, Object);
                 }
             }
         }
