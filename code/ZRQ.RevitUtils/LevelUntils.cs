@@ -11,7 +11,7 @@ namespace ZRQ.RevitUtils
         public static List<Level> GetAllLevels(Document doc)
         {
             FilteredElementCollector collector = new FilteredElementCollector(doc);
-            collector.OfCategory(BuiltInCategory.OST_Levels);
+            collector.OfClass(typeof(Level));
             return collector.ToElements().ToList().ConvertAll(p => p as Level);
         }
     }
