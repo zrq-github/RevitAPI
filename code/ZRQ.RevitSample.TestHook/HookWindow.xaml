@@ -1,0 +1,34 @@
+﻿<Window x:Class="ZRQ.RevitSample.TestHook.HookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZRQ.RevitSample.TestHook"
+        mc:Ignorable="d"
+        Title="HookWindow"
+        Height="160"
+        Width="320">
+    <Window.Resources>
+        <ContextMenu x:Key="ContextMenu">
+            <MenuItem Name="MiFullScreen"
+                      Header="全屏" />
+            <Separator></Separator>
+            <MenuItem Name="MiPlay"
+                      Header="播放" />
+        </ContextMenu>
+    </Window.Resources>
+    <Grid ContextMenu="{StaticResource ContextMenu}">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0"
+                Name="btn_XXX"
+                Height="25"
+                Content="一键XXX"></Button>
+        <TextBlock Grid.Row="1"
+                   Name="tb_Number"
+                   Text="计数:0"></TextBlock>
+
+    </Grid>
+</Window>
