@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2022.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HWTransCommon4JD">
+      <HintPath>..\..\..\..\HongWa\MEP(机电)v10.4.0\thirdparty\HWTransCommon\Release\4JD\2022\HWTransCommon4JD.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

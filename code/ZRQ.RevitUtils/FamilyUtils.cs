@@ -39,60 +39,6 @@ namespace ZRQ.RevitUtils
         }
 
         /// <summary>
-        /// 获取系统族
-        /// </summary>
-        /// <param name="doc">Document</param>
-        /// <param name="familyName">FmailyName</param>
-        /// <returns>
-        /// null: 文档中不存在该系统族
-        /// </returns>
-        public static ElementType GetSystemFamily(Document doc, string familyName)
-        {
-            FilteredElementCollector collector = new FilteredElementCollector(doc);
-            collector.OfClass(typeof(ElementType));
-
-            foreach (ElementType rt in collector)
-            {
-                if (rt.Name.Equals(familyName.Trim()))
-                {
-                    return rt;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// 是否存在系统族
-        /// </summary>
-        /// <remarks>
-        /// 系统族也是内置族（暂且称呼为族）
-        /// </remarks>
-        public static bool IsExistSystemFamily(Document doc, string familyName)
-        {
-            ElementType elementType = GetSystemFamily(doc, familyName);
-            if (elementType == null)
-                return false;
-            else
-                return true;
-        }
-
-        /// <summary>
-        /// 在文档中是否存在族
-        /// </summary>
-        /// <param name="doc"></param>
-        /// <param name="familyName"></param>
-        /// <returns></returns>
-        public static bool IsExistFamily(Document doc, string familyName)
-        {
-            Family family = GetFamily(doc, familyName);
-            if (family == null)
-                return false;
-            else
-                return true;
-        }
-
-        /// <summary>
         /// 得到所有的族类型
         /// </summary>
         /// <param name="doc"></param>
@@ -133,5 +79,58 @@ namespace ZRQ.RevitUtils
             return familySymbols;
         }
 
+        /// <summary>
+        /// 获取系统族
+        /// </summary>
+        /// <param name="doc">Document</param>
+        /// <param name="familyName">FmailyName</param>
+        /// <returns>
+        /// null: 文档中不存在该系统族
+        /// </returns>
+        public static ElementType GetSystemFamily(Document doc, string familyName)
+        {
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            collector.OfClass(typeof(ElementType));
+
+            foreach (ElementType rt in collector)
+            {
+                if (rt.Name.Equals(familyName.Trim()))
+                {
+                    return rt;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 在文档中是否存在族
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="familyName"></param>
+        /// <returns></returns>
+        public static bool IsExistFamily(Document doc, string familyName)
+        {
+            Family family = GetFamily(doc, familyName);
+            if (family == null)
+                return false;
+            else
+                return true;
+        }
+
+        /// <summary>
+        /// 是否存在系统族
+        /// </summary>
+        /// <remarks>
+        /// 系统族也是内置族（暂且称呼为族）
+        /// </remarks>
+        public static bool IsExistSystemFamily(Document doc, string familyName)
+        {
+            ElementType elementType = GetSystemFamily(doc, familyName);
+            if (elementType == null)
+                return false;
+            else
+                return true;
+        }
     }
 }

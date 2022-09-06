@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>library</OutputType>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net45</TargetFramework>
   </PropertyGroup>
 
 </Project>

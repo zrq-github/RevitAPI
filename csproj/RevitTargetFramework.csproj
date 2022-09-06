@@ -1,0 +1,52 @@
+﻿<!-- 将根据条件中是否包含Revit版本数字,自动修改其支持的编译脚本 -->
+<Project>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+	<Configurations>Debug;2016Debug;2017Debug;2018Debug;2019Debug;2020Debug;2021Debug;2022Debug;2023Debug;Release;2016Release;2017Release;2018Release;2019Release;2020Release;2021Release;2022Release;2023Release;</Configurations>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="$(Configuration.Contains('2016'))">
+    <TargetFramework>net45</TargetFramework>
+    <RevitVer>2016</RevitVer>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.Contains('2017'))">
+    <TargetFramework>net452</TargetFramework>
+    <RevitVer>2017</RevitVer>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.Contains('2018'))">
+    <TargetFramework>net452</TargetFramework>
+    <RevitVer>2018</RevitVer>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.Contains('2019'))">
+    <TargetFramework>net47</TargetFramework>
+    <RevitVer>2019</RevitVer>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.Contains('2020'))">
+    <TargetFramework>net47</TargetFramework>
+    <RevitVer>2020</RevitVer>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.Contains('2021'))">
+    <TargetFramework>net48</TargetFramework>
+    <RevitVer>2021</RevitVer>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.Contains('2022'))">
+    <TargetFramework>net48</TargetFramework>
+    <RevitVer>2022</RevitVer>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.Contains('2023'))">
+    <TargetFramework>net48</TargetFramework>
+    <RevitVer>2023</RevitVer>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="$(Configuration.Contains('Release'))">
+	<Optimize>True</Optimize>
+  </PropertyGroup>
+
+</Project>

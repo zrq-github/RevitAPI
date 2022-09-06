@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>library</OutputType>
+    <TargetFramework>net47</TargetFramework>
+    <Configurations>Debug;Release;D2016;D2018;D2020;D2022;</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2020.0.0" />
+  </ItemGroup>
+
+</Project>
