@@ -105,18 +105,6 @@ namespace ZRQ.RevitUtils
                 desField.SheetColumnWidth = srcField.SheetColumnWidth;
                 desField.SetFormatOptions(srcField.GetFormatOptions());
                 desField.SetStyle(srcField.GetStyle());
-#if REVIT2016
-                if (srcField.HasTotals)
-                {
-                    desField.HasTotals = srcField.HasTotals;
-                }
-#else
-                if (srcField.DisplayType == ScheduleFieldDisplayType.Totals && desField.CanTotal())
-                {
-                    desField.DisplayType = srcField.DisplayType;
-                    desField.TotalByAssemblyType = srcField.TotalByAssemblyType;
-                }
-#endif
             }
             List<ScheduleField> newFields = decDefinition.GetFieldOrder().Select(decDefinition.GetField).ToList();
             foreach (ScheduleField item2 in srcFields)
