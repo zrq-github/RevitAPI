@@ -1,0 +1,44 @@
+﻿<Window x:Class="ZRQ.RevitTest.RevitAsync.MyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZRQ.RevitTest.RevitAsync"
+        mc:Ignorable="d"
+        Title="MyWindow"
+        Height="450"
+        Width="800">
+    <Grid>
+        <Button x:Name="btn_task_rotate"
+                Content="Task_Rotate-旋转45"
+                Click="btn_task_rotate_Click"
+                HorizontalAlignment="Left"
+                Margin="85,40,0,0"
+                VerticalAlignment="Top" />
+        <Button x:Name="btn_task_rotate_Copy"
+                Content="Task_Move-移动"
+                Click="btn_task_rotate_Copy_Click"
+                HorizontalAlignment="Left"
+                Margin="85,86,0,0"
+                VerticalAlignment="Top" />
+        <Button x:Name="btn_task_rotate_Copy1"
+                Content="Task_Move-移动后旋转"
+                Click="btnTask_MoveRotate"
+                HorizontalAlignment="Left"
+                Margin="85,131,0,0"
+                VerticalAlignment="Top" />
+        <Button x:Name="btn_task_rotate_Copy2"
+                Content="Task_Move-旋转后移动"
+                Click="btnTask_RotateMove"
+                HorizontalAlignment="Left"
+                Margin="85,176,0,0"
+                VerticalAlignment="Top" />
+        <Button x:Name="btn_task_thread"
+                Content="Task_Move-线程调度任务"
+                Click="btnTask_thread"
+                HorizontalAlignment="Left"
+                Margin="85,235,0,0"
+                VerticalAlignment="Top" />
+
+    </Grid>
+</Window>

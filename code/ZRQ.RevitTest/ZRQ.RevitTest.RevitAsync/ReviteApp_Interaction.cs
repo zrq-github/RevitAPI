@@ -14,7 +14,6 @@ namespace ZRQ.RevitTest.RevitAsync
         public Result OnShutdown(UIControlledApplication application)
         {
             Revit.Async.RevitTask.Initialize(application);
-
             return Result.Succeeded;
         }
 

@@ -2,16 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <Configurations>Debug;Release;2020Debug</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(Configuration.Contains('2020'))">
-    <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2020.0.1" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Revit.Async" Version="2.0.1" />
+    <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2022.1.0" />
   </ItemGroup>
   
 </Project>
