@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <BaseOutputPath>C:\ProgramData\Autodesk\Revit\Addins\2022\RevitCC</BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="2022.1.21" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="2022.1.21" />
+    <PackageReference Include="Nice3point.Revit.Extensions" Version="2021.1.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoadA\HW.ToolCC.csproj" />
+  </ItemGroup>
+  
+  <Import Project="..\HWLoadBinDLL\HWLoadBinDLL.projitems" Label="Shared" />
+  
+</Project>

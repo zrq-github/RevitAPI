@@ -3,76 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZRQ.RevitTest.RevitAsync", "ZRQ.RevitTest.RevitAsync\ZRQ.RevitTest.RevitAsync.csproj", "{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Revit.Async.Shared", "..\..\..\..\SourceCode\Revit.Async-2.0.1\Revit.Async.Shared\Revit.Async.Shared.shproj", "{26214B67-5134-4C0A-86A6-51128E71AFE2}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		2016Debug|Any CPU = 2016Debug|Any CPU
-		2016Release|Any CPU = 2016Release|Any CPU
-		2017Debug|Any CPU = 2017Debug|Any CPU
-		2017Release|Any CPU = 2017Release|Any CPU
-		2018Debug|Any CPU = 2018Debug|Any CPU
-		2018Release|Any CPU = 2018Release|Any CPU
-		2019Debug|Any CPU = 2019Debug|Any CPU
-		2019Release|Any CPU = 2019Release|Any CPU
-		2020Debug|Any CPU = 2020Debug|Any CPU
-		2020Release|Any CPU = 2020Release|Any CPU
-		2021Debug|Any CPU = 2021Debug|Any CPU
-		2021Release|Any CPU = 2021Release|Any CPU
-		2022Debug|Any CPU = 2022Debug|Any CPU
-		2022Release|Any CPU = 2022Release|Any CPU
-		2023Debug|Any CPU = 2023Debug|Any CPU
-		2023Release|Any CPU = 2023Release|Any CPU
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2016Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2016Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2016Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2016Release|Any CPU.Build.0 = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2017Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2017Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2017Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2017Release|Any CPU.Build.0 = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2018Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2018Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2018Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2018Release|Any CPU.Build.0 = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2019Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2019Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2019Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2019Release|Any CPU.Build.0 = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2020Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2020Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2020Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2020Release|Any CPU.Build.0 = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2021Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2021Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2021Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2021Release|Any CPU.Build.0 = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2022Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2022Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2022Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2022Release|Any CPU.Build.0 = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2023Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2023Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2023Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.2023Release|Any CPU.Build.0 = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFEAC53E-0276-43EF-AE34-28A3C2B348C1}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5860F10E-4976-4FA4-A8CF-131D41908B3D}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\..\..\..\SourceCode\Revit.Async-2.0.1\Revit.Async.Shared\Revit.Async.Shared.projitems*{26214b67-5134-4c0a-86a6-51128e71afe2}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

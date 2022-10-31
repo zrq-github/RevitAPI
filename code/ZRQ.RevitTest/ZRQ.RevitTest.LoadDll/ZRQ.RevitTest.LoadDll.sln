@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZRQ.RevitTest.LoadDll", "ZRQ.RevitTest.LoadDll\ZRQ.RevitTest.LoadDll.csproj", "{38D62CC3-DFD7-4043-81F6-E2184BF45196}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitCC", "Revit_CC\RevitCC.csproj", "{826BE7B1-87B7-4ECC-85C3-4D0BF3F36D2D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HWLoadBinDLL", "HWLoadBinDLL\HWLoadBinDLL.shproj", "{25413657-B15B-4385-89B4-E16258692879}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HW.ToolCC", "LoadA\HW.ToolCC.csproj", "{C2AE41DC-B67A-4A23-A4D9-0CF1308680E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HW.ToolJD", "LoadB\HW.ToolJD.csproj", "{5A0CCF24-7373-4B98-8E1E-A6E76012EE53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitJD", "RevitJD\RevitJD.csproj", "{96908015-22CA-4898-93AD-8127D93ECBB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38D62CC3-DFD7-4043-81F6-E2184BF45196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D62CC3-DFD7-4043-81F6-E2184BF45196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D62CC3-DFD7-4043-81F6-E2184BF45196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D62CC3-DFD7-4043-81F6-E2184BF45196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{826BE7B1-87B7-4ECC-85C3-4D0BF3F36D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{826BE7B1-87B7-4ECC-85C3-4D0BF3F36D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{826BE7B1-87B7-4ECC-85C3-4D0BF3F36D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{826BE7B1-87B7-4ECC-85C3-4D0BF3F36D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2AE41DC-B67A-4A23-A4D9-0CF1308680E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2AE41DC-B67A-4A23-A4D9-0CF1308680E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2AE41DC-B67A-4A23-A4D9-0CF1308680E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AE41DC-B67A-4A23-A4D9-0CF1308680E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0CCF24-7373-4B98-8E1E-A6E76012EE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0CCF24-7373-4B98-8E1E-A6E76012EE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0CCF24-7373-4B98-8E1E-A6E76012EE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0CCF24-7373-4B98-8E1E-A6E76012EE53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96908015-22CA-4898-93AD-8127D93ECBB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96908015-22CA-4898-93AD-8127D93ECBB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96908015-22CA-4898-93AD-8127D93ECBB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96908015-22CA-4898-93AD-8127D93ECBB4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D070F2DE-112F-4D5E-A056-00D75BA373D7}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HWLoadBinDLL\HWLoadBinDLL.projitems*{25413657-b15b-4385-89b4-e16258692879}*SharedItemsImports = 13
+		HWLoadBinDLL\HWLoadBinDLL.projitems*{826be7b1-87b7-4ecc-85c3-4d0bf3f36d2d}*SharedItemsImports = 5
+		HWLoadBinDLL\HWLoadBinDLL.projitems*{96908015-22ca-4898-93ad-8127d93ecbb4}*SharedItemsImports = 5
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <BaseOutputPath>C:\ProgramData\Autodesk\Revit\Addins\2022\RevitJD</BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nice3point.Revit.Extensions" Version="2022.1.7" />
+    <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2022.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoadB\HW.ToolJD.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\HWLoadBinDLL\HWLoadBinDLL.projitems" Label="Shared" />
+
+</Project>

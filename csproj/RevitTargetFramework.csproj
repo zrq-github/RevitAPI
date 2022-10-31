@@ -2,7 +2,7 @@
 <Project>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-	<Configurations>Debug;2016Debug;2017Debug;2018Debug;2019Debug;2020Debug;2021Debug;2022Debug;2023Debug;Release;2016Release;2017Release;2018Release;2019Release;2020Release;2021Release;2022Release;2023Release;</Configurations>
+	<Configurations>Debug;Debug2016;Debug2017;Debug2018;Debug2019;Debug2020;Debug2021;Debug2022;Debug2023;Release;Release2016;Release2017;Release2018;Release2019;Release2020;Release2021;Release2022;Release2023;</Configurations>
   </PropertyGroup>
   
   <PropertyGroup Condition="$(Configuration.Contains('2016'))">
@@ -46,7 +46,6 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="$(Configuration.Contains('Release'))">
-	<Optimize>True</Optimize>
+    <Optimize>True</Optimize>
   </PropertyGroup>
-
 </Project>
