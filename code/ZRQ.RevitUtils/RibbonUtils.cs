@@ -7,6 +7,9 @@
 *************************************************************************************/
 
 using Autodesk.Revit.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Media.Imaging;
 
@@ -57,7 +60,7 @@ public static class RibbonUtils
 
     private static RibbonPanel CreateRibbonPanel(UIControlledApplication application, string panelName, IEnumerable<RibbonPanel> ribbonPanels)
     {
-        var ribbonPanel = ribbonPanels.FirstOrDefault(panel => panel.Name.Equals(panelName));
+        var ribbonPanel = ribbonPanels.ToList().FirstOrDefault(panel => panel.Name.Equals(panelName));
         return ribbonPanel ?? application.CreateRibbonPanel(panelName);
     }
 }

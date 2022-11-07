@@ -8,13 +8,25 @@ using System.Threading.Tasks;
 namespace ZRQ.RevitUtils
 {
     /// <summary>
-    /// 对族文件的一系列操作
+    /// 对族的一系列操作
     /// </summary>
     /// <remarks>
     /// 因为族
     /// </remarks>
     public class FamilyUtils
     {
+        /// <summary>
+        /// 获取文档中的全部族
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <returns>zrq: 获取文档中的全部族</returns>
+        public static IEnumerable<Family> GetFamilies(Document doc)
+        {
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            IEnumerable<Family> families = collector.OfClass(typeof(Family)).ToElements().Cast<Family>();
+            return families;
+        }
+
         /// <summary>
         /// 获取族
         /// </summary>
@@ -38,6 +50,23 @@ namespace ZRQ.RevitUtils
             return null;
         }
 
+        /// <summary>
+        /// 获取文档里面的全部族类型
+        /// </summary>
+        /// <param name="doc">文档</param>
+        /// <returns>zrq: 返回文档中全部的族类型</returns>
+        public static ICollection<FamilySymbol> GetFamilySymbols(Document doc)
+        {
+            List<FamilySymbol> familySymbols = new List<FamilySymbol>();
+
+            var families = GetFamilies(doc);
+            foreach (Family family in families)
+            {
+                familySymbols.AddRange(GetFamilySymbols(doc, family));
+            }
+
+            return familySymbols;
+        }
         /// <summary>
         /// 得到所有的族类型
         /// </summary>
