@@ -13,6 +13,11 @@ internal class RevitApplication : IExternalApplication
         return Result.Succeeded;
     }
 
+    /// <summary>
+    /// 程序开始
+    /// </summary>
+    /// <param name="application"></param>
+    /// <returns></returns>
     public Result OnStartup(UIControlledApplication application)
     {
         return Result.Succeeded;
