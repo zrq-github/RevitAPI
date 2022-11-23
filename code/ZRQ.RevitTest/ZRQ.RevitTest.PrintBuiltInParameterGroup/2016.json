@@ -1,0 +1,547 @@
+﻿[
+  {
+    "ParameterGroupName": "释放/杆件力",
+    "ParameterValue": -5000216,
+    "EnumName": "PG_RELEASES_MEMBER_FORCES"
+  },
+  {
+    "ParameterGroupName": "次端点",
+    "ParameterValue": -5000214,
+    "EnumName": "PG_SECONDARY_END"
+  },
+  {
+    "ParameterGroupName": "主端点",
+    "ParameterValue": -5000213,
+    "EnumName": "PG_PRIMARY_END"
+  },
+  {
+    "ParameterGroupName": "力矩",
+    "ParameterValue": -5000212,
+    "EnumName": "PG_MOMENTS"
+  },
+  {
+    "ParameterGroupName": "力",
+    "ParameterValue": -5000211,
+    "EnumName": "PG_FORCES"
+  },
+  {
+    "ParameterGroupName": "预制产品数据",
+    "ParameterValue": -5000210,
+    "EnumName": "PG_FABRICATION_PRODUCT_DATA"
+  },
+  {
+    "ParameterGroupName": "参照",
+    "ParameterValue": -5000208,
+    "EnumName": "PG_REFERENCE"
+  },
+  {
+    "ParameterGroupName": "几何图形位置",
+    "ParameterValue": -5000207,
+    "EnumName": "PG_GEOMETRY_POSITIONING"
+  },
+  {
+    "ParameterGroupName": "分区几何图形",
+    "ParameterValue": -5000206,
+    "EnumName": "PG_DIVISION_GEOMETRY"
+  },
+  {
+    "ParameterGroupName": "管段和管件",
+    "ParameterValue": -5000205,
+    "EnumName": "PG_SEGMENTS_FITTINGS"
+  },
+  {
+    "ParameterGroupName": "延伸(结束/顶部)",
+    "ParameterValue": -5000204,
+    "EnumName": "PG_CONTINUOUSRAIL_END_TOP_EXTENSION"
+  },
+  {
+    "ParameterGroupName": "延伸(起始/底部)",
+    "ParameterValue": -5000203,
+    "EnumName": "PG_CONTINUOUSRAIL_BEGIN_BOTTOM_EXTENSION"
+  },
+  {
+    "ParameterGroupName": "转角",
+    "ParameterValue": -5000202,
+    "EnumName": "PG_STAIRS_WINDERS"
+  },
+  {
+    "ParameterGroupName": "支撑",
+    "ParameterValue": -5000201,
+    "EnumName": "PG_STAIRS_SUPPORTS"
+  },
+  {
+    "ParameterGroupName": "终点连接",
+    "ParameterValue": -5000200,
+    "EnumName": "PG_STAIRS_OPEN_END_CONNECTION"
+  },
+  {
+    "ParameterGroupName": "扶手 2",
+    "ParameterValue": -5000199,
+    "EnumName": "PG_RAILING_SYSTEM_SECONDARY_FAMILY_HANDRAILS"
+  },
+  {
+    "ParameterGroupName": "终端",
+    "ParameterValue": -5000198,
+    "EnumName": "PG_TERMINTATION"
+  },
+  {
+    "ParameterGroupName": "踏板/踢面",
+    "ParameterValue": -5000197,
+    "EnumName": "PG_STAIRS_TREADS_RISERS"
+  },
+  {
+    "ParameterGroupName": "计算规则",
+    "ParameterValue": -5000196,
+    "EnumName": "PG_STAIRS_CALCULATOR_RULES"
+  },
+  {
+    "ParameterGroupName": "直径     (长度单位或厚度的百分比)",
+    "ParameterValue": -5000195,
+    "EnumName": "PG_SPLIT_PROFILE_DIMENSIONS"
+  },
+  {
+    "ParameterGroupName": "长度",
+    "ParameterValue": -5000194,
+    "EnumName": "PG_LENGTH"
+  },
+  {
+    "ParameterGroupName": "节点",
+    "ParameterValue": -5000193,
+    "EnumName": "PG_NODES"
+  },
+  {
+    "ParameterGroupName": "分析属性",
+    "ParameterValue": -5000192,
+    "EnumName": "PG_ANALYTICAL_PROPERTIES"
+  },
+  {
+    "ParameterGroupName": "分析平差",
+    "ParameterValue": -5000191,
+    "EnumName": "PG_ANALYTICAL_ALIGNMENT"
+  },
+  {
+    "ParameterGroupName": "上升/下降",
+    "ParameterValue": -5000190,
+    "EnumName": "PG_SYSTEMTYPE_RISEDROP"
+  },
+  {
+    "ParameterGroupName": "内衬",
+    "ParameterValue": -5000189,
+    "EnumName": "PG_LINING"
+  },
+  {
+    "ParameterGroupName": "绝缘层",
+    "ParameterValue": -5000188,
+    "EnumName": "PG_INSULATION"
+  },
+  {
+    "ParameterGroupName": "整个图例",
+    "ParameterValue": -5000187,
+    "EnumName": "PG_OVERALL_LEGEND"
+  },
+  {
+    "ParameterGroupName": "可见性",
+    "ParameterValue": -5000186,
+    "EnumName": "PG_VISIBILITY"
+  },
+  {
+    "ParameterGroupName": "支座",
+    "ParameterValue": -5000185,
+    "EnumName": "PG_SUPPORT"
+  },
+  {
+    "ParameterGroupName": "V 网格",
+    "ParameterValue": -5000184,
+    "EnumName": "PG_RAILING_SYSTEM_SEGMENT_V_GRID"
+  },
+  {
+    "ParameterGroupName": "U 网格",
+    "ParameterValue": -5000183,
+    "EnumName": "PG_RAILING_SYSTEM_SEGMENT_U_GRID"
+  },
+  {
+    "ParameterGroupName": "支柱",
+    "ParameterValue": -5000182,
+    "EnumName": "PG_RAILING_SYSTEM_SEGMENT_POSTS"
+  },
+  {
+    "ParameterGroupName": "图案余数",
+    "ParameterValue": -5000181,
+    "EnumName": "PG_RAILING_SYSTEM_SEGMENT_PATTERN_REMAINDER"
+  },
+  {
+    "ParameterGroupName": "图案重复",
+    "ParameterValue": -5000180,
+    "EnumName": "PG_RAILING_SYSTEM_SEGMENT_PATTERN_REPEAT"
+  },
+  {
+    "ParameterGroupName": "线段图案(默认)",
+    "ParameterValue": -5000179,
+    "EnumName": "PG_RAILING_SYSTEM_FAMILY_SEGMENT_PATTERN"
+  },
+  {
+    "ParameterGroupName": "扶手 1",
+    "ParameterValue": -5000178,
+    "EnumName": "PG_RAILING_SYSTEM_FAMILY_HANDRAILS"
+  },
+  {
+    "ParameterGroupName": "顶部扶栏",
+    "ParameterValue": -5000177,
+    "EnumName": "PG_RAILING_SYSTEM_FAMILY_TOP_RAIL"
+  },
+  {
+    "ParameterGroupName": "能量模型 - 建筑设备",
+    "ParameterValue": -5000176,
+    "EnumName": "PG_CONCEPTUAL_ENERGY_DATA_BUILDING_SERVICES"
+  },
+  {
+    "ParameterGroupName": "数据",
+    "ParameterValue": -5000175,
+    "EnumName": "PG_DATA"
+  },
+  {
+    "ParameterGroupName": "电气 - 线路",
+    "ParameterValue": -5000174,
+    "EnumName": "PG_ELECTRICAL_CIRCUITING"
+  },
+  {
+    "ParameterGroupName": "常规",
+    "ParameterValue": -5000173,
+    "EnumName": "PG_GENERAL"
+  },
+  {
+    "ParameterGroupName": "自适应构件",
+    "ParameterValue": -5000172,
+    "EnumName": "PG_FLEXIBLE"
+  },
+  {
+    "ParameterGroupName": "能量模型",
+    "ParameterValue": -5000171,
+    "EnumName": "PG_ENERGY_ANALYSIS_CONCEPTUAL_MODEL"
+  },
+  {
+    "ParameterGroupName": "详图模型",
+    "ParameterValue": -5000170,
+    "EnumName": "PG_ENERGY_ANALYSIS_DETAILED_MODEL"
+  },
+  {
+    "ParameterGroupName": "通用",
+    "ParameterValue": -5000169,
+    "EnumName": "PG_ENERGY_ANALYSIS_DETAILED_AND_CONCEPTUAL_MODELS"
+  },
+  {
+    "ParameterGroupName": "管件",
+    "ParameterValue": -5000168,
+    "EnumName": "PG_FITTING"
+  },
+  {
+    "ParameterGroupName": "概念能量数据",
+    "ParameterValue": -5000167,
+    "EnumName": "PG_CONCEPTUAL_ENERGY_DATA"
+  },
+  {
+    "ParameterGroupName": "面积",
+    "ParameterValue": -5000166,
+    "EnumName": "PG_AREA"
+  },
+  {
+    "ParameterGroupName": "模型属性",
+    "ParameterValue": -5000165,
+    "EnumName": "PG_ADSK_MODEL_PROPERTIES"
+  },
+  {
+    "ParameterGroupName": "V 网格",
+    "ParameterValue": -5000164,
+    "EnumName": "PG_CURTAIN_GRID_V"
+  },
+  {
+    "ParameterGroupName": "U 网格",
+    "ParameterValue": -5000163,
+    "EnumName": "PG_CURTAIN_GRID_U"
+  },
+  {
+    "ParameterGroupName": "显示",
+    "ParameterValue": -5000162,
+    "EnumName": "PG_DISPLAY"
+  },
+  {
+    "ParameterGroupName": "分析结果",
+    "ParameterValue": -5000161,
+    "EnumName": "PG_ANALYSIS_RESULTS"
+  },
+  {
+    "ParameterGroupName": "编辑板形状",
+    "ParameterValue": -5000160,
+    "EnumName": "PG_SLAB_SHAPE_EDIT"
+  },
+  {
+    "ParameterGroupName": "光域",
+    "ParameterValue": -5000159,
+    "EnumName": "PG_LIGHT_PHOTOMETRICS"
+  },
+  {
+    "ParameterGroupName": "填充图案应用",
+    "ParameterValue": -5000158,
+    "EnumName": "PG_PATTERN_APPLICATION"
+  },
+  {
+    "ParameterGroupName": "绿色建筑属性",
+    "ParameterValue": -5000157,
+    "EnumName": "PG_GREEN_BUILDING"
+  },
+  {
+    "ParameterGroupName": "轮廓 2",
+    "ParameterValue": -5000156,
+    "EnumName": "PG_PROFILE_2"
+  },
+  {
+    "ParameterGroupName": "轮廓 1",
+    "ParameterValue": -5000155,
+    "EnumName": "PG_PROFILE_1"
+  },
+  {
+    "ParameterGroupName": "轮廓",
+    "ParameterValue": -5000154,
+    "EnumName": "PG_PROFILE"
+  },
+  {
+    "ParameterGroupName": "下弦杆",
+    "ParameterValue": -5000153,
+    "EnumName": "PG_TRUSS_FAMILY_BOTTOM_CHORD"
+  },
+  {
+    "ParameterGroupName": "上弦杆",
+    "ParameterValue": -5000152,
+    "EnumName": "PG_TRUSS_FAMILY_TOP_CHORD"
+  },
+  {
+    "ParameterGroupName": "斜腹杆",
+    "ParameterValue": -5000151,
+    "EnumName": "PG_TRUSS_FAMILY_DIAG_WEB"
+  },
+  {
+    "ParameterGroupName": "竖向腹杆",
+    "ParameterValue": -5000150,
+    "EnumName": "PG_TRUSS_FAMILY_VERT_WEB"
+  },
+  {
+    "ParameterGroupName": "标题文字",
+    "ParameterValue": -5000149,
+    "EnumName": "PG_TITLE"
+  },
+  {
+    "ParameterGroupName": "消防系统",
+    "ParameterValue": -5000148,
+    "EnumName": "PG_FIRE_PROTECTION"
+  },
+  {
+    "ParameterGroupName": "转动",
+    "ParameterValue": -5000147,
+    "EnumName": "PG_ROTATION_ABOUT"
+  },
+  {
+    "ParameterGroupName": "平动",
+    "ParameterValue": -5000146,
+    "EnumName": "PG_TRANSLATION_IN"
+  },
+  {
+    "ParameterGroupName": "分析模型",
+    "ParameterValue": -5000145,
+    "EnumName": "PG_ANALYTICAL_MODEL"
+  },
+  {
+    "ParameterGroupName": "钢筋集",
+    "ParameterValue": -5000144,
+    "EnumName": "PG_REBAR_ARRAY"
+  },
+  {
+    "ParameterGroupName": "图层",
+    "ParameterValue": -5000143,
+    "EnumName": "PG_REBAR_SYSTEM_LAYERS"
+  },
+  {
+    "ParameterGroupName": "网格",
+    "ParameterValue": -5000141,
+    "EnumName": "PG_CURTAIN_GRID"
+  },
+  {
+    "ParameterGroupName": "网格 2 竖梃",
+    "ParameterValue": -5000140,
+    "EnumName": "PG_CURTAIN_MULLION_2"
+  },
+  {
+    "ParameterGroupName": "水平竖梃",
+    "ParameterValue": -5000139,
+    "EnumName": "PG_CURTAIN_MULLION_HORIZ"
+  },
+  {
+    "ParameterGroupName": "网格 1 竖梃",
+    "ParameterValue": -5000138,
+    "EnumName": "PG_CURTAIN_MULLION_1"
+  },
+  {
+    "ParameterGroupName": "垂直竖梃",
+    "ParameterValue": -5000137,
+    "EnumName": "PG_CURTAIN_MULLION_VERT"
+  },
+  {
+    "ParameterGroupName": "网格 2",
+    "ParameterValue": -5000136,
+    "EnumName": "PG_CURTAIN_GRID_2"
+  },
+  {
+    "ParameterGroupName": "水平网格",
+    "ParameterValue": -5000135,
+    "EnumName": "PG_CURTAIN_GRID_HORIZ"
+  },
+  {
+    "ParameterGroupName": "网格 1",
+    "ParameterValue": -5000134,
+    "EnumName": "PG_CURTAIN_GRID_1"
+  },
+  {
+    "ParameterGroupName": "垂直网格",
+    "ParameterValue": -5000133,
+    "EnumName": "PG_CURTAIN_GRID_VERT"
+  },
+  {
+    "ParameterGroupName": "IFC 参数",
+    "ParameterValue": -5000131,
+    "EnumName": "PG_IFC"
+  },
+  {
+    "ParameterGroupName": "电气",
+    "ParameterValue": -5000130,
+    "EnumName": "PG_AELECTRICAL"
+  },
+  {
+    "ParameterGroupName": "能量分析",
+    "ParameterValue": -5000129,
+    "EnumName": "PG_ENERGY_ANALYSIS"
+  },
+  {
+    "ParameterGroupName": "结构分析",
+    "ParameterValue": -5000128,
+    "EnumName": "PG_STRUCTURAL_ANALYSIS"
+  },
+  {
+    "ParameterGroupName": "机械 - 流量",
+    "ParameterValue": -5000127,
+    "EnumName": "PG_MECHANICAL_AIRFLOW"
+  },
+  {
+    "ParameterGroupName": "机械 - 负荷",
+    "ParameterValue": -5000126,
+    "EnumName": "PG_MECHANICAL_LOADS"
+  },
+  {
+    "ParameterGroupName": "电气 - 负荷",
+    "ParameterValue": -5000125,
+    "EnumName": "PG_ELECTRICAL_LOADS"
+  },
+  {
+    "ParameterGroupName": "电气 - 照明",
+    "ParameterValue": -5000124,
+    "EnumName": "PG_ELECTRICAL_LIGHTING"
+  },
+  {
+    "ParameterGroupName": "文字",
+    "ParameterValue": -5000123,
+    "EnumName": "PG_TEXT"
+  },
+  {
+    "ParameterGroupName": "相机",
+    "ParameterValue": -5000122,
+    "EnumName": "PG_VIEW_CAMERA"
+  },
+  {
+    "ParameterGroupName": "范围",
+    "ParameterValue": -5000121,
+    "EnumName": "PG_VIEW_EXTENTS"
+  },
+  {
+    "ParameterGroupName": "填充图案",
+    "ParameterValue": -5000120,
+    "EnumName": "PG_PATTERN"
+  },
+  {
+    "ParameterGroupName": "限制条件",
+    "ParameterValue": -5000119,
+    "EnumName": "PG_CONSTRAINTS"
+  },
+  {
+    "ParameterGroupName": "阶段化",
+    "ParameterValue": -5000114,
+    "EnumName": "PG_PHASING"
+  },
+  {
+    "ParameterGroupName": "机械",
+    "ParameterValue": -5000113,
+    "EnumName": "PG_MECHANICAL"
+  },
+  {
+    "ParameterGroupName": "结构",
+    "ParameterValue": -5000112,
+    "EnumName": "PG_STRUCTURAL"
+  },
+  {
+    "ParameterGroupName": "卫浴",
+    "ParameterValue": -5000111,
+    "EnumName": "PG_PLUMBING"
+  },
+  {
+    "ParameterGroupName": "电气工程",
+    "ParameterValue": -5000110,
+    "EnumName": "PG_ELECTRICAL"
+  },
+  {
+    "ParameterGroupName": "梯边梁",
+    "ParameterValue": -5000109,
+    "EnumName": "PG_STAIR_STRINGERS"
+  },
+  {
+    "ParameterGroupName": "踢面",
+    "ParameterValue": -5000108,
+    "EnumName": "PG_STAIR_RISERS"
+  },
+  {
+    "ParameterGroupName": "踏板",
+    "ParameterValue": -5000107,
+    "EnumName": "PG_STAIR_TREADS"
+  },
+  {
+    "ParameterGroupName": "基线",
+    "ParameterValue": -5000106,
+    "EnumName": "PG_UNDERLAY"
+  },
+  {
+    "ParameterGroupName": "材质和装饰",
+    "ParameterValue": -5000105,
+    "EnumName": "PG_MATERIALS"
+  },
+  {
+    "ParameterGroupName": "图形",
+    "ParameterValue": -5000104,
+    "EnumName": "PG_GRAPHICS"
+  },
+  {
+    "ParameterGroupName": "构造",
+    "ParameterValue": -5000103,
+    "EnumName": "PG_CONSTRUCTION"
+  },
+  {
+    "ParameterGroupName": "尺寸标注",
+    "ParameterValue": -5000101,
+    "EnumName": "PG_GEOMETRY"
+  },
+  {
+    "ParameterGroupName": "标识数据",
+    "ParameterValue": -5000100,
+    "EnumName": "PG_IDENTITY_DATA"
+  },
+  {
+    "ParameterGroupName": "其他",
+    "ParameterValue": -1,
+    "EnumName": "INVALID"
+  }
+]
