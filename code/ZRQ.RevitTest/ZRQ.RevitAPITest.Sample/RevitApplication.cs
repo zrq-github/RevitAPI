@@ -2,6 +2,7 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System.Reflection;
+using Revit.Async;
 
 [ObfuscationAttribute(Exclude = true, ApplyToMembers = true)]
 internal class RevitApplication : IExternalApplication
@@ -20,7 +21,8 @@ internal class RevitApplication : IExternalApplication
     /// <returns></returns>
     public Result OnStartup(UIControlledApplication application)
     {
-        // asda
+        RevitTask.Initialize(application);
+
         return Result.Succeeded;
     }
 }

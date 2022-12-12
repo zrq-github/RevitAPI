@@ -34,14 +34,14 @@ namespace ZRQ.RevitAPITest.Sample
 
             var json = JsonConvert.SerializeObject(builtInParameterGroupJsons);
 
-            writeJsonFile(@"C:\Users\zrq\Desktop\xt_v9.2.0\builtInParameterGroupJsons.json", json);
+            writeJsonFile(@"..\builtInParameterGroupJsons.json", json);
 
             //将序列化的json字符串内容写入Json文件，并且保存
             void writeJsonFile(string path, string jsonConents)
             {
-                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite, FileShare.ReadWrite))
+                using (FileStream fs = new(path, FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite, FileShare.ReadWrite))
                 {
-                    using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
+                    using (StreamWriter sw = new(fs, Encoding.UTF8))
                     {
                         sw.WriteLine(jsonConents);
                     }
