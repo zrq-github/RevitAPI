@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>library</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Revit.Async" Version="2.0.1" />
+    <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2022.1.0" />
+  </ItemGroup>
+
+</Project>
