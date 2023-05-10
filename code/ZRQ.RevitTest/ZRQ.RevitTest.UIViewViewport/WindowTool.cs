@@ -518,32 +518,32 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// <param name="isEnableMax"></param>
         public static void SetMaxmizeboxEnable(System.Windows.Window window, bool isEnableMax, bool isEnableMin)
         {
-            int GWL_STYLE = -16;
-            uint WS_MAXIMIZEBOX = 0x00010000;
-            uint WS_MINIMIZEBOX = 0x00020000;
-            uint SWP_NOSIZE = 0x0001;
-            uint SWP_NOMOVE = 0x0002;
-            uint SWP_FRAMECHANGED = 0x0020;
+            int gwlStyle = -16;
+            uint wsMaximizebox = 0x00010000;
+            uint wsMinimizebox = 0x00020000;
+            uint swpNosize = 0x0001;
+            uint swpNomove = 0x0002;
+            uint swpFramechanged = 0x0020;
             IntPtr handle = new System.Windows.Interop.WindowInteropHelper(window).Handle;
-            uint nStyle = Win32Window.GetWindowLong(handle, GWL_STYLE);
+            uint nStyle = Win32Window.GetWindowLong(handle, gwlStyle);
             if (!isEnableMax)
             {
-                nStyle &= ~(WS_MAXIMIZEBOX);
+                nStyle &= ~(wsMaximizebox);
             }
             else
             {
-                nStyle |= WS_MAXIMIZEBOX;
+                nStyle |= wsMaximizebox;
             }
             if (!isEnableMin)
             {
-                nStyle &= ~(WS_MINIMIZEBOX);
+                nStyle &= ~(wsMinimizebox);
             }
             else
             {
-                nStyle |= WS_MINIMIZEBOX;
+                nStyle |= wsMinimizebox;
             }
-           Win32Window.SetWindowLong(handle, GWL_STYLE, (IntPtr)((long)((ulong)nStyle)));
-           Win32Window.SetWindowPos(handle, IntPtr.Zero, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_FRAMECHANGED);
+           Win32Window.SetWindowLong(handle, gwlStyle, (IntPtr)((long)((ulong)nStyle)));
+           Win32Window.SetWindowPos(handle, IntPtr.Zero, 0, 0, 0, 0, swpNosize | swpNomove | swpFramechanged);
         }
     }
 }

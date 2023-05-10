@@ -16,7 +16,7 @@ namespace ZRQ.RevitTest.UIViewViewport
     /// <remarks>
     /// 这个模块, 不应该在这里, 要转移到HWCommonUI中去(lwc)
     /// </remarks>
-    public static class HDScreenAdaptor
+    public static class HdScreenAdaptor
     {
         #region Win32 API
         /// <summary>
@@ -42,12 +42,12 @@ IntPtr hdc, // handle to DC
         #endregion
 
         #region DeviceCaps常量
-        const int HORZRES = 8;
-        const int VERTRES = 10;
-        const int LOGPIXELSX = 88;
-        const int LOGPIXELSY = 90;
-        const int DESKTOPVERTRES = 117;
-        const int DESKTOPHORZRES = 118;
+        const int Horzres = 8;
+        const int Vertres = 10;
+        const int Logpixelsx = 88;
+        const int Logpixelsy = 90;
+        const int Desktopvertres = 117;
+        const int Desktophorzres = 118;
         #endregion
 
         #region 属性
@@ -59,7 +59,7 @@ IntPtr hdc, // handle to DC
             get
             {
                 var hdc = GetDC(IntPtr.Zero);
-                var dpiX = GetDeviceCaps(hdc, LOGPIXELSX);
+                var dpiX = GetDeviceCaps(hdc, Logpixelsx);
                 ReleaseDC(IntPtr.Zero, hdc);
                 return dpiX;
             }
@@ -69,7 +69,7 @@ IntPtr hdc, // handle to DC
             get
             {
                 var hdc = GetDC(IntPtr.Zero);
-                var dpiX = GetDeviceCaps(hdc, LOGPIXELSX);
+                var dpiX = GetDeviceCaps(hdc, Logpixelsx);
                 ReleaseDC(IntPtr.Zero, hdc);
                 return Convert.ToInt32(dpiX / 96f * 100);
             }
@@ -82,7 +82,7 @@ IntPtr hdc, // handle to DC
             get
             {
                 var hdc = GetDC(IntPtr.Zero);
-                var dpiX = GetDeviceCaps(hdc, LOGPIXELSY);
+                var dpiX = GetDeviceCaps(hdc, Logpixelsy);
                 ReleaseDC(IntPtr.Zero, hdc);
                 return dpiX;
             }
@@ -98,8 +98,8 @@ IntPtr hdc, // handle to DC
                 var hdc = GetDC(IntPtr.Zero);
                 var size = new Size
                 {
-                    Width = GetDeviceCaps(hdc, DESKTOPHORZRES),
-                    Height = GetDeviceCaps(hdc, DESKTOPVERTRES)
+                    Width = GetDeviceCaps(hdc, Desktophorzres),
+                    Height = GetDeviceCaps(hdc, Desktopvertres)
                 };
                 ReleaseDC(IntPtr.Zero, hdc);
                 return size;
@@ -116,8 +116,8 @@ IntPtr hdc, // handle to DC
                 var hdc = GetDC(IntPtr.Zero);
                 var size = new Size
                 {
-                    Width = GetDeviceCaps(hdc, HORZRES),
-                    Height = GetDeviceCaps(hdc, VERTRES)
+                    Width = GetDeviceCaps(hdc, Horzres),
+                    Height = GetDeviceCaps(hdc, Vertres)
                 };
                 ReleaseDC(IntPtr.Zero, hdc);
                 return size;
@@ -154,11 +154,11 @@ IntPtr hdc, // handle to DC
                     return 1f;
             }
         }
-        private static List<Form> _buffer { get; set; } = new List<Form>();
+        private static List<Form> Buffer { get; set; } = new List<Form>();
         /// <summary>
         /// 适配winform的高清屏
         /// </summary>
-        public static void AdaptHDScreen(Control ctrl, string[] ExcludeControl = null)
+        public static void AdaptHdScreen(Control ctrl, string[] excludeControl = null)
         {
             //用户电脑情况太多了，发布后遇到各种情况，暂时先去掉
 #if false
@@ -212,9 +212,9 @@ IntPtr hdc, // handle to DC
         private static void Fm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Form fm = sender as Form;
-            if (_buffer.Contains(fm))
+            if (Buffer.Contains(fm))
             {
-                _buffer.Remove(fm);
+                Buffer.Remove(fm);
             }
         }
 
@@ -223,7 +223,7 @@ IntPtr hdc, // handle to DC
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        public static System.Drawing.Size AdaptHDScreen(this System.Drawing.Size size)
+        public static System.Drawing.Size AdaptHdScreen(this System.Drawing.Size size)
         {
             System.Drawing.Size output = new System.Drawing.Size()
             {
@@ -237,7 +237,7 @@ IntPtr hdc, // handle to DC
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        public static System.Drawing.Point AdaptHDScreen(this System.Drawing.Point point)
+        public static System.Drawing.Point AdaptHdScreen(this System.Drawing.Point point)
         {
             System.Drawing.Point output = new System.Drawing.Point()
             {

@@ -72,15 +72,15 @@ namespace ZRQ.RevitUtils
         /// 得到所有的族类型
         /// </summary>
         /// <param name="doc"></param>
-        /// <param name="familyID"></param>
+        /// <param name="familyId"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">familyID不是族ID</exception>
-        public static List<FamilySymbol> GetFamilySymbols(Document doc, ElementId familyID)
+        public static List<FamilySymbol> GetFamilySymbols(Document doc, ElementId familyId)
         {
-            Family family = doc.GetElement(familyID) as Family;
+            Family family = doc.GetElement(familyId) as Family;
             if (family == null)
             {
-                throw new ArgumentNullException(nameof(family), $"{nameof(familyID)} is not Family's ID");
+                throw new ArgumentNullException(nameof(family), $"{nameof(familyId)} is not Family's ID");
             }
             return GetFamilySymbols(doc, family);
         }

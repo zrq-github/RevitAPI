@@ -14,13 +14,13 @@ namespace ZRQ.RevitUtils
         /// 适配IndependentTag取TaggedLocalElementId的接口 independentTag.TaggedLocalElementId在2022弃用2023删除,用independentTag.GetTaggedLocalElementIds()代替
         /// </summary>
         /// <param name="sourceElements"></param>
-        /// <param name="TaggedLocalElementId"></param>
+        /// <param name="taggedLocalElementId"></param>
         /// <returns></returns>
-        public static List<IndependentTag> FindIndependentTag(List<IndependentTag> sourceElements, ElementId TaggedLocalElementId)
+        public static List<IndependentTag> FindIndependentTag(List<IndependentTag> sourceElements, ElementId taggedLocalElementId)
         {
             List<IndependentTag> independentTags = new List<IndependentTag>();
 #if REVIT2016 || REVIT2017 || REVIT2018 || REVIT2019 || REVIT2020 || REVIT2021
-                independentTags = sourceElements.FindAll(p => ((p as IndependentTag).TaggedLocalElementId.Equals(TaggedLocalElementId)));
+                independentTags = sourceElements.FindAll(p => ((p as IndependentTag).TaggedLocalElementId.Equals(taggedLocalElementId)));
 #else
             independentTags = sourceElements.FindAll(p => p.GetTaggedLocalElementIds().Contains(TaggedLocalElementId)).ToList();
 #endif

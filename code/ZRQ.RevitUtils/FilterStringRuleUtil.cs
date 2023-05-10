@@ -1,6 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 
-namespace HWTransCommon.HWRevit
+namespace ZRQ.RevitUtils
 {
     public class FilterStringRuleUtil
     {

@@ -13,9 +13,9 @@ namespace ZRQ.RevitTest.UIViewViewport
     {
         public WPfOwnerWindowHandler(System.Windows.Window window)
         {
-            _hwnd = new System.Windows.Interop.WindowInteropHelper(window).Handle;
+            Hwnd = new System.Windows.Interop.WindowInteropHelper(window).Handle;
         }
-        private IntPtr _hwnd { get; set; }
+        private IntPtr Hwnd { get; set; }
 
         /// <summary>
         /// 句柄
@@ -24,7 +24,7 @@ namespace ZRQ.RevitTest.UIViewViewport
         {
             get
             {
-                return this._hwnd;
+                return this.Hwnd;
             }
         }
     }

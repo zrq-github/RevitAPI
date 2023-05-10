@@ -10,15 +10,15 @@ namespace ZRQ.RevitUtils
     /// <summary>
     /// BoundingBoxXYZ Operation class
     /// </summary>
-    public static class BoundingBoxXYZUtils
+    public static class BoundingBoxXyzUtils
     {
         /// <summary>
         /// 得到BoundingBox底部一圈的CurveLoop
         /// </summary>
-        public static CurveLoop GetBottomCurveLoop(BoundingBoxXYZ boxXYZ)
+        public static CurveLoop GetBottomCurveLoop(BoundingBoxXYZ boxXyz)
         {
-            var minpt = GetMin3D(boxXYZ);
-            var maxpt = GetMax3D(boxXYZ);
+            var minpt = GetMin3D(boxXyz);
+            var maxpt = GetMax3D(boxXyz);
 
             var pt2 = new XYZ(maxpt.X, minpt.Y, minpt.Z);
             var pt3 = new XYZ(maxpt.X, maxpt.Y, minpt.Z);
@@ -44,9 +44,9 @@ namespace ZRQ.RevitUtils
         /// 因为在某些情况下, 获取到的boxXYZ, 并不是常规的BoundingBoxXYZ,
         /// 它的Transfrom并不位于左下角, 而是在中间, 这样得到的数据可能是错误的.
         /// </remarks>
-        public static XYZ GetCenter3D(BoundingBoxXYZ boxXYZ)
+        public static XYZ GetCenter3D(BoundingBoxXYZ boxXyz)
         {
-            return (GetMin3D(boxXYZ) + GetMax3D(boxXYZ)) / 2;
+            return (GetMin3D(boxXyz) + GetMax3D(boxXyz)) / 2;
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace ZRQ.RevitUtils
         /// zrq: BoudingBoxXYZ的最小点 ≠ 实际坐标 
         /// 例如创建的Solid.
         /// </remarks>
-        public static XYZ GetMax3D(BoundingBoxXYZ boxXYZ)
+        public static XYZ GetMax3D(BoundingBoxXYZ boxXyz)
         {
-            return boxXYZ.Transform.OfPoint(boxXYZ.Max);
+            return boxXyz.Transform.OfPoint(boxXyz.Max);
         }
 
         /// <summary>
@@ -68,18 +68,18 @@ namespace ZRQ.RevitUtils
         /// zrq: BoudingBoxXYZ的最小点 ≠ 实际坐标 
         /// 例如创建的Solid.
         /// </remarks>
-        public static XYZ GetMin3D(BoundingBoxXYZ boxXYZ)
+        public static XYZ GetMin3D(BoundingBoxXYZ boxXyz)
         {
-            return boxXYZ.Transform.OfPoint(boxXYZ.Min);
+            return boxXyz.Transform.OfPoint(boxXyz.Min);
         }
 
-        public static BoundingBoxXYZ GetTransformedBoundingBoxXYZ(BoundingBoxXYZ boxXYZ)
+        public static BoundingBoxXYZ GetTransformedBoundingBoxXyz(BoundingBoxXYZ boxXyz)
         {
-            BoundingBoxXYZ boundingBoxXYZ = new BoundingBoxXYZ();
-            boundingBoxXYZ.Min = GetMin3D(boxXYZ);
-            boundingBoxXYZ.Max = GetMax3D(boxXYZ);
-            boundingBoxXYZ.Transform = Transform.Identity;
-            return boundingBoxXYZ;
+            BoundingBoxXYZ boundingBoxXyz = new BoundingBoxXYZ();
+            boundingBoxXyz.Min = GetMin3D(boxXyz);
+            boundingBoxXyz.Max = GetMax3D(boxXyz);
+            boundingBoxXyz.Transform = Transform.Identity;
+            return boundingBoxXyz;
         }
 
         /// <summary>
@@ -88,9 +88,9 @@ namespace ZRQ.RevitUtils
         /// <remarks>
         /// zrq: 这种多用于 Filter 
         /// </remarks>
-        public static Outline GetOutline(BoundingBoxXYZ boxXYZ)
+        public static Outline GetOutline(BoundingBoxXYZ boxXyz)
         {
-            return new Outline(GetMin3D(boxXYZ), GetMax3D(boxXYZ));
+            return new Outline(GetMin3D(boxXyz), GetMax3D(boxXyz));
         }
 
         /// <summary>

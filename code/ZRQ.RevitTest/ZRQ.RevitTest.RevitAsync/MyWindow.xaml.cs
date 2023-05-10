@@ -41,41 +41,41 @@ namespace ZRQ.RevitTest.RevitAsync
 
         private async void btn_task_rotate_Click(object sender, RoutedEventArgs e)
         {
-            Task task_Rotation = TestRevitTask.DoTastRotation();
-            await task_Rotation;
+            Task taskRotation = TestRevitTask.DoTastRotation();
+            await taskRotation;
         }
 
         private async void btn_task_rotate_Copy_Click(object sender, RoutedEventArgs e)
         {
-            Task task_Move = TestRevitTask.DoTaskMove();
-            await task_Move;
+            Task taskMove = TestRevitTask.DoTaskMove();
+            await taskMove;
         }
 
         private async void btnTask_MoveRotate(object sender, RoutedEventArgs e)
         {
-            Task task_Move = TestRevitTask.DoTaskMove();
-            await task_Move;
-            Task task_Rotation = TestRevitTask.DoTastRotation();
-            await task_Rotation;
+            Task taskMove = TestRevitTask.DoTaskMove();
+            await taskMove;
+            Task taskRotation = TestRevitTask.DoTastRotation();
+            await taskRotation;
         }
 
         private async void btnTask_RotateMove(object sender, RoutedEventArgs e)
         {
-            Task task_Rotation = TestRevitTask.DoTastRotation();
-            await task_Rotation;
-            Task task_Move = TestRevitTask.DoTaskMove();
-            await task_Move;
+            Task taskRotation = TestRevitTask.DoTastRotation();
+            await taskRotation;
+            Task taskMove = TestRevitTask.DoTaskMove();
+            await taskMove;
         }
 
         private void btnTask_thread(object sender, RoutedEventArgs e)
         {
             Task threadTask = new Task(async () =>
             {
-                Task task_Rotation = TestRevitTask.DoTastRotation();
-                await task_Rotation;
+                Task taskRotation = TestRevitTask.DoTastRotation();
+                await taskRotation;
                 MessageBox.Show("我旋转了");
-                Task task_Move = TestRevitTask.DoTaskMove();
-                await task_Rotation;
+                Task taskMove = TestRevitTask.DoTaskMove();
+                await taskRotation;
                 MessageBox.Show("我移动了");
             });
             threadTask.Start();

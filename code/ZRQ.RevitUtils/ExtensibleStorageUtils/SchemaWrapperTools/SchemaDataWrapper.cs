@@ -54,7 +54,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// <param name="subSchema">The SchemaWrapper of the field's subSchema, if the field is of type "Entity"</param>
         public void AddData(string name, System.Type typeIn, UnitType unit, SchemaWrapper subSchema)
         {
-            m_DataList.Add(new FieldData(name, typeIn.FullName, unit, subSchema));
+            _mDataList.Add(new FieldData(name, typeIn.FullName, unit, subSchema));
         }
 #else
         public void AddData(string name, Type typeIn, ForgeTypeId unit, SchemaWrapper subSchema)
@@ -71,8 +71,8 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public List<FieldData> DataList
         {
-            get { return m_DataList; }
-            set { m_DataList = value; }
+            get { return _mDataList; }
+            set { _mDataList = value; }
         }
 
 
@@ -81,8 +81,8 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public string SchemaId
         {
-            get { return m_schemaId; }
-            set { m_schemaId = value; }
+            get { return _mSchemaId; }
+            set { _mSchemaId = value; }
         }
 
 
@@ -91,8 +91,8 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public AccessLevel ReadAccess
         {
-            get { return m_ReadAccess; }
-            set { m_ReadAccess = value; }
+            get { return _mReadAccess; }
+            set { _mReadAccess = value; }
         }
 
         /// <summary>
@@ -100,8 +100,8 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public AccessLevel WriteAccess
         {
-            get { return m_WriteAccess; }
-            set { m_WriteAccess = value; }
+            get { return _mWriteAccess; }
+            set { _mWriteAccess = value; }
         }
 
         /// <summary>
@@ -109,10 +109,10 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public string VendorId
         {
-            get { return m_vendorId; }
+            get { return _mVendorId; }
             set
             {
-                m_vendorId = value;
+                _mVendorId = value;
             }
         }
 
@@ -122,8 +122,8 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public string ApplicationId
         {
-            get { return m_applicationId; }
-            set { m_applicationId = value; }
+            get { return _mApplicationId; }
+            set { _mApplicationId = value; }
         }
 
         /// <summary>
@@ -131,10 +131,10 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public string Documentation
         {
-            get { return m_Documentation; }
+            get { return _mDocumentation; }
             set
             {
-                m_Documentation = value;
+                _mDocumentation = value;
             }
 
         }
@@ -144,24 +144,24 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public string Name
         {
-            get { return m_Name; }
+            get { return _mName; }
             set
             {
-                m_Name = value;
+                _mName = value;
             }
         }
 
         #endregion
 
         #region Data
-        private AccessLevel m_ReadAccess;
-        private AccessLevel m_WriteAccess;
-        private List<FieldData> m_DataList;
-        private string m_applicationId;
-        private string m_schemaId;
-        private string m_vendorId;
-        private string m_Name;
-        private string m_Documentation;
+        private AccessLevel _mReadAccess;
+        private AccessLevel _mWriteAccess;
+        private List<FieldData> _mDataList;
+        private string _mApplicationId;
+        private string _mSchemaId;
+        private string _mVendorId;
+        private string _mName;
+        private string _mDocumentation;
         #endregion
     }
 }

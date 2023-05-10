@@ -12,7 +12,7 @@ namespace ZRQ.RevitTest.UIViewViewport
     /// <summary>
     /// 
     /// </summary>
-    internal class DimJIGMng : IDisposable
+    internal class DimJigMng : IDisposable
     {
         UIApplication _uiapp = null;
 
@@ -20,24 +20,24 @@ namespace ZRQ.RevitTest.UIViewViewport
         System.Windows.Forms.Timer _refreshTimer = null;
 
         //浮动轴符对话框
-        DimJIGForm _dimJigForm = null;
-        UIView _activeUIView = null;
+        DimJigForm _dimJigForm = null;
+        UIView _activeUiView = null;
 
         /// <summary>
         /// 其他数据源
         /// </summary>
-        public Object obj = null;
+        public Object Obj = null;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="uiapp"></param>
-        public DimJIGMng(UIApplication uiapp)
+        public DimJigMng(UIApplication uiapp)
         {
             _uiapp = uiapp;
 
             //创建透明窗口
-            _dimJigForm = new DimJIGForm(_uiapp);
+            _dimJigForm = new DimJigForm(_uiapp);
             WindowTool.ShowFormModeless(_dimJigForm);
 
             //焦点
@@ -48,7 +48,7 @@ namespace ZRQ.RevitTest.UIViewViewport
             _refreshTimer.Interval = 100000;
             _refreshTimer.Tick += Timer_Tick_Refresh;
 
-            _activeUIView = UIViewTool.GetActiveUIView(_uiapp);
+            _activeUiView = UiViewTool.GetActiveUiView(_uiapp);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// </summary>
         /// <param name="uiapp"></param>
         /// <param name="data"></param>
-        public DimJIGMng(UIApplication uiapp, Data4DimBase data)
+        public DimJigMng(UIApplication uiapp, Data4DimBase data)
         {
             _uiapp = uiapp;
             _data = data;
@@ -79,7 +79,7 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// </summary>
         /// <param name="uiapp"></param>
         /// <param name="firstPt"></param>
-        public DimJIGMng(UIApplication uiapp, XYZ firstPt)
+        public DimJigMng(UIApplication uiapp, XYZ firstPt)
         {
             _uiapp = uiapp;
             _firstPt = firstPt;
@@ -89,7 +89,7 @@ namespace ZRQ.RevitTest.UIViewViewport
         void InitWinDlg()
         {
             //创建透明窗口
-            _dimJigForm = new DimJIGForm(_uiapp);
+            _dimJigForm = new DimJigForm(_uiapp);
             WindowTool.ShowFormModeless(_dimJigForm);
 
             //焦点
@@ -99,7 +99,7 @@ namespace ZRQ.RevitTest.UIViewViewport
             _refreshTimer = new System.Windows.Forms.Timer();
             _refreshTimer.Interval = 1000;
             _refreshTimer.Tick += Timer_Tick_Refresh;
-            _activeUIView = UIViewTool.GetActiveUIView(_uiapp);
+            _activeUiView = UiViewTool.GetActiveUiView(_uiapp);
         }
         /// <summary>
         /// 
@@ -148,24 +148,24 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// <summary>
         /// 绘制JIG委托
         /// </summary>
-        public Action<System.Windows.Forms.Form, UIView, System.Drawing.Point, Data4DimBase> DrawJIGAction { get; set; }
+        public Action<System.Windows.Forms.Form, UIView, System.Drawing.Point, Data4DimBase> DrawJigAction { get; set; }
 
         /// <summary>
         /// 绘制一条直线的预览 绘制JIG委托
         /// </summary>
-        public Action<System.Windows.Forms.Form, UIView, System.Drawing.Point, XYZ> DrawJIGActionSinleLine { get; set; }
+        public Action<System.Windows.Forms.Form, UIView, System.Drawing.Point, XYZ> DrawJigActionSinleLine { get; set; }
 
         /// <summary>
         /// 绘制JIG委托,带自定义数据
         /// </summary>
-        public Action<System.Windows.Forms.Form, UIView, System.Drawing.Point, Data4DimBase, Object> DrawJIGActionUserData { get; set; }
+        public Action<System.Windows.Forms.Form, UIView, System.Drawing.Point, Data4DimBase, Object> DrawJigActionUserData { get; set; }
 
         /// <summary>
         /// PickPoint 用户ESC，返回空
         /// </summary>
         /// <param name="strTip">revit左下角提示语</param>
         /// <returns></returns>
-        public XYZ DoJIG(string strTip = "")
+        public XYZ DoJig(string strTip = "")
         {
             try
             {
@@ -196,7 +196,7 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// <param name="snapSettings">选择类型枚举，可以取并集。</param>
         /// <param name="strTip">revit左下角提示语</param>
         /// <returns></returns>
-        public XYZ DoJIG(ObjectSnapTypes snapSettings, string strTip = "")
+        public XYZ DoJig(ObjectSnapTypes snapSettings, string strTip = "")
         {
             try
             {
@@ -239,17 +239,17 @@ namespace ZRQ.RevitTest.UIViewViewport
         {
             try
             {
-                if (DrawJIGAction != null && _activeUIView != null)
+                if (DrawJigAction != null && _activeUiView != null)
                 {
-                    DrawJIGAction(_dimJigForm, _activeUIView, System.Windows.Forms.Cursor.Position, _data);
+                    DrawJigAction(_dimJigForm, _activeUiView, System.Windows.Forms.Cursor.Position, _data);
                 }
-                else if (DrawJIGActionSinleLine != null && _activeUIView != null)
+                else if (DrawJigActionSinleLine != null && _activeUiView != null)
                 {
-                    DrawJIGActionSinleLine(_dimJigForm, _activeUIView, System.Windows.Forms.Cursor.Position, _firstPt);
+                    DrawJigActionSinleLine(_dimJigForm, _activeUiView, System.Windows.Forms.Cursor.Position, _firstPt);
                 }
-                else if (DrawJIGActionUserData != null && _activeUIView != null)
+                else if (DrawJigActionUserData != null && _activeUiView != null)
                 {
-                    DrawJIGActionUserData(_dimJigForm, _activeUIView, System.Windows.Forms.Cursor.Position, _data, obj);
+                    DrawJigActionUserData(_dimJigForm, _activeUiView, System.Windows.Forms.Cursor.Position, _data, Obj);
                 }
             }
             catch (Exception ex)

@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace ZRQ.RevitTest.UIViewViewport
 {
-    public partial class DimJIGForm : Form
+    public partial class DimJigForm : Form
     {
         UIApplication _uiapp = null;
 
-        public DimJIGForm(UIApplication uiapp)
+        public DimJigForm(UIApplication uiapp)
         {
             InitializeComponent();
 
@@ -35,14 +35,14 @@ namespace ZRQ.RevitTest.UIViewViewport
 
         private void FormLoaded(object sender, EventArgs e)
         {
-            UIView uiview = UIViewTool.GetActiveUIView(_uiapp);
+            UIView uiview = UiViewTool.GetActiveUiView(_uiapp);
             if (uiview != null)
             {
                 var viewRect = uiview.GetWindowRectangle();
                 this.Location = new Point(viewRect.Left, viewRect.Top);
                 this.Size = new Size(viewRect.Right - viewRect.Left, viewRect.Bottom - viewRect.Top);
             }
-             HDScreenAdaptor.AdaptHDScreen(this);
+             HdScreenAdaptor.AdaptHdScreen(this);
         }
     }
 }

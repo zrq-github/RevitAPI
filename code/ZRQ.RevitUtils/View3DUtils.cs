@@ -12,9 +12,8 @@ namespace ZRQ.RevitUtils
     /// </summary>
     internal class View3DUtils
     {
-        public static View3D CreateView3D(Document Doc, string view3dName)
+        public static View3D CreateView3D(Document doc, string view3dName)
         {
-            Document doc = Doc;
             //先判断当前document中 是否已经存在名字为 view3dName 的三维视图
             View3D theView = GetView3D(doc, view3dName);
             if (theView != null)
@@ -22,8 +21,8 @@ namespace ZRQ.RevitUtils
                 return theView;
             }
 
-            XYZ xYZ = new XYZ(-1.0, 1.0, -1.0);
-            View3D newView3D = NewView3D(doc, xYZ);
+            XYZ xYz = new XYZ(-1.0, 1.0, -1.0);
+            View3D newView3D = NewView3D(doc, xYz);
             if (newView3D == null)
             {
                 return null;

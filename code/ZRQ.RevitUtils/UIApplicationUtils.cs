@@ -9,7 +9,7 @@ namespace ZRQ.RevitUtils
 {
     public class UIApplicationUtils
     {
-        public static UIApplication GetUIApplication(UIControlledApplication uiControlApp)
+        public static UIApplication GetUiApplication(UIControlledApplication uiControlApp)
         {
             var flag = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.InvokeMethod;
             var uiApp = (Autodesk.Revit.UI.UIApplication)uiControlApp.GetType().InvokeMember("getUIApplication", flag, Type.DefaultBinder, uiControlApp, null);

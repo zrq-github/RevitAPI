@@ -1,10 +1,10 @@
-﻿using Autodesk.Revit.Attributes;
-using Autodesk.Revit.DB;
+﻿using System.Reflection;
 using Autodesk.Revit.UI;
-using System.Reflection;
 using Revit.Async;
 
-[ObfuscationAttribute(Exclude = true, ApplyToMembers = true)]
+namespace ZRQ.RevitAPITest.Sample;
+
+[Obfuscation(Exclude = true, ApplyToMembers = true)]
 internal class RevitApplication : IExternalApplication
 {
     public static string ApplicationId { get; } = "8402F7DD-5F72-4614-B98D-AAFF4F9EE639";

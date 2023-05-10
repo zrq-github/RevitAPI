@@ -6,12 +6,11 @@
  * 
 *************************************************************************************/
 
-using Autodesk.Revit.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Media.Imaging;
+using Autodesk.Revit.UI;
+
+namespace ZRQ.RevitUtils;
 
 public static class RibbonUtils
 {

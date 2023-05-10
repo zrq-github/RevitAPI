@@ -1,15 +1,12 @@
-﻿using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ZRQ.RevitTest.PrintBuiltInParameterGroup;
-using Newtonsoft.Json;
 using System.IO;
+using System.Text;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
+using Newtonsoft.Json;
 
-namespace ZRQ.RevitAPITest.Sample
+namespace ZRQ.RevitTest.PrintBuiltInParameterGroup
 {
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
@@ -34,10 +31,10 @@ namespace ZRQ.RevitAPITest.Sample
 
             var json = JsonConvert.SerializeObject(builtInParameterGroupJsons);
 
-            writeJsonFile(@"..\builtInParameterGroupJsons.json", json);
+            WriteJsonFile(@"..\builtInParameterGroupJsons.json", json);
 
             //将序列化的json字符串内容写入Json文件，并且保存
-            void writeJsonFile(string path, string jsonConents)
+            void WriteJsonFile(string path, string jsonConents)
             {
                 using (FileStream fs = new(path, FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite, FileShare.ReadWrite))
                 {

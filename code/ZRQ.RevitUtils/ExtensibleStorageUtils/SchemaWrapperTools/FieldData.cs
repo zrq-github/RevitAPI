@@ -41,10 +41,10 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// <param name="subSchema">The SchemaWrapper of the field's subSchema, if the field is of type "Entity"</param>
         public FieldData(string name, string typeIn, UnitType unit, SchemaWrapper subSchema)
         {
-            m_Name = name;
-            m_Type = typeIn;
-            m_Unit = unit;
-            m_SubSchema = subSchema;
+            _mName = name;
+            _mType = typeIn;
+            _mUnit = unit;
+            _mSubSchema = subSchema;
         }
 #else
         /// <summary>
@@ -101,8 +101,8 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public string Name
         {
-            get { return m_Name; }
-            set { m_Name = value; }
+            get { return _mName; }
+            set { _mName = value; }
         }
 
         /// <summary>
@@ -110,8 +110,8 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public string Type
         {
-            get { return m_Type; }
-            set { m_Type = value; }
+            get { return _mType; }
+            set { _mType = value; }
         }
 
 #if (REVIT2016 || REVIT2017 || REVIT2018 || REVIT2019 || REVIT2020 || REVIT2021)
@@ -120,8 +120,8 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public UnitType Unit
         {
-            get { return m_Unit; }
-            set { m_Unit = value; }
+            get { return _mUnit; }
+            set { _mUnit = value; }
         }
 #else
         public ForgeTypeId Unit
@@ -135,17 +135,17 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public SchemaWrapper SubSchema
         {
-            get { return m_SubSchema; }
-            set { m_SubSchema = value; }
+            get { return _mSubSchema; }
+            set { _mSubSchema = value; }
         }
         #endregion
 
         #region Data
-        private SchemaWrapper m_SubSchema;
-        private string m_Name;
-        private string m_Type;
+        private SchemaWrapper _mSubSchema;
+        private string _mName;
+        private string _mType;
 #if (REVIT2016 || REVIT2017 || REVIT2018 || REVIT2019 || REVIT2020 || REVIT2021)
-        private UnitType m_Unit;
+        private UnitType _mUnit;
 #else
         private ForgeTypeId m_Unit;
 #endif

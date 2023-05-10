@@ -26,8 +26,8 @@ namespace ZRQ.RevitTest.RevitAsync
                     trans.Start();
                     Pipe pipe = ele as Pipe;
                     Line locationLine = (pipe.Location as LocationCurve).Curve as Line;
-                    XYZ startXYZ = locationLine.GetEndPoint(0);
-                    pipe.Location.Rotate(Line.CreateUnbound(startXYZ, new XYZ(0, 0, 1)), Math.PI / 4);
+                    XYZ startXyz = locationLine.GetEndPoint(0);
+                    pipe.Location.Rotate(Line.CreateUnbound(startXyz, new XYZ(0, 0, 1)), Math.PI / 4);
                     trans.Commit();
                 }
             });
@@ -50,7 +50,7 @@ namespace ZRQ.RevitTest.RevitAsync
                     trans.Start();
                     Pipe pipe = ele as Pipe;
                     Line locationLine = (pipe.Location as LocationCurve).Curve as Line;
-                    XYZ startXYZ = locationLine.GetEndPoint(0);
+                    XYZ startXyz = locationLine.GetEndPoint(0);
                     pipe.Location.Move(new XYZ(0.5, 0, 0));
                     trans.Commit();
                 }

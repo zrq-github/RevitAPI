@@ -156,28 +156,28 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils
             string map0Name = "map0Name";
             string array0Name = "array0Name";
             #endregion
-            int s_counter = DateTime.Now.Second;
+            int sCounter = DateTime.Now.Second;
             Guid NewGuid()
             {
 
                 byte[] guidBytes = new byte[16];
-                Random randomGuidBytes = new Random(s_counter);
+                Random randomGuidBytes = new Random(sCounter);
                 randomGuidBytes.NextBytes(guidBytes);
-                s_counter++;
+                sCounter++;
                 return new Guid(guidBytes);
             }
 
             Guid subEntityGuid0 = NewGuid();
             string entity0Name = "entity0Name";
 
-            Guid subEntityGuid_Map1 = NewGuid();
-            string entity1Name_Map = "entity1Name_Map";
+            Guid subEntityGuidMap1 = NewGuid();
+            string entity1NameMap = "entity1Name_Map";
 
-            Guid subEntityGuid_Array2 = NewGuid();
-            string entity2Name_Array = "entity2Name_Array";
+            Guid subEntityGuidArray2 = NewGuid();
+            string entity2NameArray = "entity2Name_Array";
 
-            string array1Name = entity2Name_Array;
-            string map1Name = entity1Name_Map;
+            string array1Name = entity2NameArray;
+            string map1Name = entity1NameMap;
 
             #region Add Fields to the SchemaWrapper
             mySchemaWrapper.AddField<int>(int0Name, GetUndefinedUnitType(), null);
@@ -207,32 +207,32 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils
             //Create a sample map of subEntities (An IDictionary<> with key type "int" and value type "Entity")
             //
             //Create a new sample schema.
-            SchemaWrapper mySubSchemaWrapper1_Map = SchemaWrapper.NewSchema(subEntityGuid_Map1, readAccess, writeAccess, vendorId, applicationId, map1Name, "A map of int to Entity");
-            mySubSchemaWrapper1_Map.AddField<int>("subInt1", GetUndefinedUnitType(), null);
-            mySubSchemaWrapper1_Map.FinishSchema();
+            SchemaWrapper mySubSchemaWrapper1Map = SchemaWrapper.NewSchema(subEntityGuidMap1, readAccess, writeAccess, vendorId, applicationId, map1Name, "A map of int to Entity");
+            mySubSchemaWrapper1Map.AddField<int>("subInt1", GetUndefinedUnitType(), null);
+            mySubSchemaWrapper1Map.FinishSchema();
             //Create a new sample Entity.
-            Entity subEnt1 = new Entity(mySubSchemaWrapper1_Map.GetSchema());
+            Entity subEnt1 = new Entity(mySubSchemaWrapper1Map.GetSchema());
             //Set data in that entity.
-            subEnt1.Set(mySubSchemaWrapper1_Map.GetSchema().GetField("subInt1"), 22);
+            subEnt1.Set(mySubSchemaWrapper1Map.GetSchema().GetField("subInt1"), 22);
             //Add a new map field to the top-level Schema.  We will add the entity we just created after all top-level
             //fields are created.
-            mySchemaWrapper.AddField<IDictionary<int, Entity>>(map1Name, GetUndefinedUnitType(), mySubSchemaWrapper1_Map);
+            mySchemaWrapper.AddField<IDictionary<int, Entity>>(map1Name, GetUndefinedUnitType(), mySubSchemaWrapper1Map);
 
 
             //
             //Create a sample array of subentities (An IList<> of type "Entity")
             //
             //Create a new sample schema
-            SchemaWrapper mySubSchemaWrapper2_Array = SchemaWrapper.NewSchema(subEntityGuid_Array2, readAccess, writeAccess, vendorId, applicationId, array1Name, "An array of Entities");
-            mySubSchemaWrapper2_Array.AddField<int>("subInt2", GetUndefinedUnitType(), null);
-            mySubSchemaWrapper2_Array.FinishSchema();
+            SchemaWrapper mySubSchemaWrapper2Array = SchemaWrapper.NewSchema(subEntityGuidArray2, readAccess, writeAccess, vendorId, applicationId, array1Name, "An array of Entities");
+            mySubSchemaWrapper2Array.AddField<int>("subInt2", GetUndefinedUnitType(), null);
+            mySubSchemaWrapper2Array.FinishSchema();
             //Create a new sample Entity.
-            Entity subEnt2 = new Entity(mySubSchemaWrapper2_Array.GetSchema());
+            Entity subEnt2 = new Entity(mySubSchemaWrapper2Array.GetSchema());
             //Set the data in that Entity.
-            subEnt2.Set(mySubSchemaWrapper2_Array.GetSchema().GetField("subInt2"), 33);
+            subEnt2.Set(mySubSchemaWrapper2Array.GetSchema().GetField("subInt2"), 33);
             //Add a new array field to the top-level Schema We will add the entity we just crated after all top-level fields
             //are created.
-            mySchemaWrapper.AddField<IList<Entity>>(array1Name, GetUndefinedUnitType(), mySubSchemaWrapper2_Array);
+            mySchemaWrapper.AddField<IList<Entity>>(array1Name, GetUndefinedUnitType(), mySubSchemaWrapper2Array);
 
             #endregion
 
@@ -333,19 +333,19 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils
                 return Activator.CreateInstance<T>();
             }
 
-            T Object = Activator.CreateInstance<T>();
+            T @object = Activator.CreateInstance<T>();
             IDictionary<string, string> iDictionary = entity.Get<IDictionary<string, string>>(fieldData);
 
             if (!iDictionary.TryGetValue(typeof(T).Name, out string json))
             {
                 //TryClassUpdate(storageElement, Object);
-                return Object;
+                return @object;
             }
 
-            Object = JsonConvert.DeserializeObject<T>(json);
+            @object = JsonConvert.DeserializeObject<T>(json);
 
             // 判断一下启动数据更新流程
-            IUpdateStorage extendStorageBase = Object as IUpdateStorage;
+            IUpdateStorage extendStorageBase = @object as IUpdateStorage;
             if (extendStorageBase != null)
             {
                 int latestVersion = extendStorageBase.GetLatestVersion();
@@ -356,22 +356,22 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils
                     extendStorageBase.UpdataState = updataResult;
                     if (updataResult == UpdataState.Succeed)
                     {
-                        SetDictionary(storageElement, Object);//再次保存一下
+                        SetDictionary(storageElement, @object);//再次保存一下
                     }
                 }
             }
 
-            return Object;
+            return @object;
         }
 
         /// <summary>
         /// 尝试跨类更新(暂时不开放)
         /// </summary>
-        private void TryClassUpdate<T>(Element storageElement, T Object)
+        private void TryClassUpdate<T>(Element storageElement, T @object)
         {
             Console.WriteLine($"{typeof(T).Name} does not exist,try to doing classUpdate");
 
-            IUpdateStorage extendStorageBase = Object as IUpdateStorage;
+            IUpdateStorage extendStorageBase = @object as IUpdateStorage;
             if (extendStorageBase != null)
             {
                 extendStorageBase.UpdataState = UpdataState.ClassUpdating;
@@ -381,7 +381,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils
                 // update succeed and save
                 if (updataResult == UpdataState.Succeed)
                 {
-                    SetDictionary(storageElement, Object);
+                    SetDictionary(storageElement, @object);
                 }
             }
         }
@@ -389,7 +389,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils
         /// <summary>
         /// 保存类的json数据到字典
         /// </summary>
-        public void SetDictionary<T>(Element storageElement, T Object)
+        public void SetDictionary<T>(Element storageElement, T @object)
         {
             Schema schemaLookup = Schema.Lookup(SchemaGuid);
             Field fieldData = schemaLookup.GetField(nameof(StorageDictionary));
@@ -404,7 +404,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils
             IDictionary<string, string> iDictionary = entity.Get<IDictionary<string, string>>(fieldData);
             keyValuePairs = new Dictionary<string, string>(iDictionary);
 
-            string objectJson = JsonConvert.SerializeObject(Object);
+            string objectJson = JsonConvert.SerializeObject(@object);
             keyValuePairs[typeof(T).Name] = objectJson;
 
             string json = JsonConvert.SerializeObject(keyValuePairs);

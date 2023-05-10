@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ZRQ.RevitTest.RevitAsync
 {
     [ObfuscationAttribute(Exclude = true, ApplyToMembers = true)]
-    public class ReviteApp_Interaction : IExternalApplication
+    public class ReviteAppInteraction : IExternalApplication
     {
         public Result OnShutdown(UIControlledApplication application)
         {

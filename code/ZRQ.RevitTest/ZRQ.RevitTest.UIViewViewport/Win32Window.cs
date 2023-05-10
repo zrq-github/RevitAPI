@@ -85,10 +85,10 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// 
         /// </summary>
         /// <param name="hwnd"></param>
-        /// <param name="ID"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [DllImport("User32.dll")]
-        public static extern int GetWindowThreadProcessId(IntPtr hwnd, out int ID);
+        public static extern int GetWindowThreadProcessId(IntPtr hwnd, out int id);
         /// <summary>
         /// 
         /// </summary>
@@ -105,27 +105,27 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// <summary>
         /// 
         /// </summary>
-        public const int HWND_TOP = 0;
+        public const int HwndTop = 0;
         /// <summary>
         /// 
         /// </summary>
-        public const int HWND_BOTTOM = 1;
+        public const int HwndBottom = 1;
         /// <summary>
         /// 
         /// </summary>
-        public const int HWND_TOPMOST = -1;
+        public const int HwndTopmost = -1;
         /// <summary>
         /// 
         /// </summary>
-        public const int HWND_NOTOPMOST = -2;
+        public const int HwndNotopmost = -2;
         /// <summary>
         /// {忽略 cx、cy, 保持大小}
         /// </summary>
-        public const uint SWP_NOSIZE = 1;    //
+        public const uint SwpNosize = 1;    //
         /// <summary>
         /// {忽略 X、Y, 不改变位置}
         /// </summary>
-        public const uint SWP_NOMOVE = 2;    //
+        public const uint SwpNomove = 2;    //
 
         /// <summary>
         /// 
@@ -165,12 +165,12 @@ namespace ZRQ.RevitTest.UIViewViewport
 /// 
 /// </summary>
 /// <param name="hWnd"></param>
-/// <param name="Msg"></param>
+/// <param name="msg"></param>
 /// <param name="wParam"></param>
 /// <param name="lParam"></param>
 /// <returns></returns>
         [DllImport("User32.dll", EntryPoint = "SendMessage")]
-        public static extern int SendMessage(int hWnd, uint Msg, uint wParam, uint lParam);
+        public static extern int SendMessage(int hWnd, uint msg, uint wParam, uint lParam);
 
 /// <summary>
 /// 
@@ -219,7 +219,7 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// </summary>
         public delegate bool CallBack(int hwnd, int lParam);
 
-        const int WM_MOUSEACTIVATE = 0x21;
+        const int WmMouseactivate = 0x21;
         private static bool ActiveChildWindowCallBack(int hwnd, int lParam)
         {
             StringBuilder title = new StringBuilder(200);
@@ -227,10 +227,10 @@ namespace ZRQ.RevitTest.UIViewViewport
             if (len > 0)
             {
                 string titleString = title.ToString();
-                if (titleString.StartsWith(_sActiveRevitChildWindowTitle))
+                if (titleString.StartsWith(SActiveRevitChildWindowTitle))
                 {
                     System.Windows.MessageBox.Show(titleString);
-                    SendMessage(hwnd, WM_MOUSEACTIVATE, 0, 0);
+                    SendMessage(hwnd, WmMouseactivate, 0, 0);
                     return false;
                 }
             }
@@ -241,14 +241,14 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// <summary>
         ///  枚举所有子窗口
         /// </summary>
-        public static string _sActiveRevitChildWindowTitle = "";
+        public static string SActiveRevitChildWindowTitle = "";
         /// <summary>
         /// 通过名称，激活子窗口
         /// </summary>
         /// <param name="childWindowTitle"></param>
         public static void ActiveRevitChildWindow(string childWindowTitle)
         {
-            _sActiveRevitChildWindowTitle = childWindowTitle;
+            SActiveRevitChildWindowTitle = childWindowTitle;
             IntPtr mainWindowHandle = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
             EnumChildWindows(mainWindowHandle.ToInt32(), new CallBack(ActiveChildWindowCallBack), 0);
         }

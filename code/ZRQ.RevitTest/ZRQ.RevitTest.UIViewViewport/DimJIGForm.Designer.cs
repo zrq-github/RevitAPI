@@ -1,6 +1,6 @@
 ﻿namespace ZRQ.RevitTest.UIViewViewport
 {
-    partial class DimJIGForm
+    partial class DimJigForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "DimJIGForm";
+            this.Name = "DimJigForm";
             this.Text = "DimJIGForm";
             this.ResumeLayout(false);
 

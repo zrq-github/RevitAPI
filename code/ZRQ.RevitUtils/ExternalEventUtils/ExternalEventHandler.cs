@@ -21,7 +21,7 @@ namespace ZRQ.RevitUtils.ExternalEventUtils
     {
         public static ExternalEvent Event;
 
-        public static IExternalEventBase IEventBase;
+        public static IExternalEventBase EventBase;
 
         public static void CreateExternalEvent()
         {
@@ -30,11 +30,11 @@ namespace ZRQ.RevitUtils.ExternalEventUtils
 
         public void Execute(UIApplication app)
         {
-            if (IEventBase == null)
+            if (EventBase == null)
                 return;
             try
             {
-                IEventBase.Execute(app);
+                EventBase.Execute(app);
             }
             catch (Exception ex)
             {
@@ -42,16 +42,16 @@ namespace ZRQ.RevitUtils.ExternalEventUtils
             }
             finally
             {
-                IEventBase = null;
+                EventBase = null;
             }
         }
 
         public string GetName()
         {
-            if (IEventBase == null)
+            if (EventBase == null)
                 return nameof(ExternalEventHandler);
 
-            return IEventBase.GetName();
+            return EventBase.GetName();
         }
     }
 }

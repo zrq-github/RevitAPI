@@ -24,11 +24,11 @@ namespace ZRQ.RevitSample.TestHook
     /// </summary>
     public partial class HookWindow : Window
     {
-        private IKeyboardMouseEvents applHook;
+        private IKeyboardMouseEvents _applHook;
 
-        int Index = 0;
+        int _index = 0;
 
-        public UIApplication UIApp { get; }
+        public UIApplication UiApp { get; }
 
         [DllImport("user32.dll")]
         public static extern bool PostMessage(IntPtr hWnd, uint msg, uint wParam, uint lParam);
@@ -38,12 +38,12 @@ namespace ZRQ.RevitSample.TestHook
             InitializeComponent();
             this.Closed += HookWindow_Closed;
 
-            applHook = Hook.AppEvents();
+            _applHook = Hook.AppEvents();
             //applHook.MouseClick += ApplHook_MouseClick;
             //applHook.MouseDown += ApplHook_MouseDown;
             //applHook.MouseDownExt += AppHookMouseDownExt;
-            applHook.MouseUp += ApplHook_MouseUp;
-            applHook.MouseUpExt += ApplHook_MouseUpExt;
+            _applHook.MouseUp += ApplHook_MouseUp;
+            _applHook.MouseUpExt += ApplHook_MouseUpExt;
             //applHook.KeyPress += AppHookKeyPress;
         }
 
@@ -54,7 +54,7 @@ namespace ZRQ.RevitSample.TestHook
                 return;
             }
             e.Handled = true;
-            this.tb_Number.Text = $"计数：{Index++}";
+            this.tb_Number.Text = $"计数：{_index++}";
         }
 
         private void ApplHook_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -88,7 +88,7 @@ namespace ZRQ.RevitSample.TestHook
 
         public HookWindow(UIApplication application) : this()
         {
-            UIApp = application;
+            UiApp = application;
         }
 
         private void AppHookKeyPress(object sender, KeyPressEventArgs e)
@@ -106,7 +106,7 @@ namespace ZRQ.RevitSample.TestHook
                 return;
             }
             e.Handled = true;
-            this.tb_Number.Text = $"计数：{Index++}";
+            this.tb_Number.Text = $"计数：{_index++}";
 
             //IntPtr hwndRvt = Autodesk.Windows.ComponentManager.ApplicationWindow;
             //PostMessage(hwndRvt, (uint)KEYBOARD_MSG.WM_KEYDOWN, (uint)System.Windows.Forms.Keys.Escape, 0);
@@ -122,11 +122,11 @@ namespace ZRQ.RevitSample.TestHook
 
         public void Unsubscribe()
         {
-            applHook.MouseDownExt -= AppHookMouseDownExt;
-            applHook.KeyPress -= AppHookKeyPress;
+            _applHook.MouseDownExt -= AppHookMouseDownExt;
+            _applHook.KeyPress -= AppHookKeyPress;
 
             //It is recommened to dispose it
-            applHook.Dispose();
+            _applHook.Dispose();
         }
     }
 }

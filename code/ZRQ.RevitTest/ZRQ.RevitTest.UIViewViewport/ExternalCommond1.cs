@@ -15,7 +15,7 @@ namespace ZRQ.RevitTest.UIViewViewport
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
     public class ExternalCommond1 : IExternalCommand
     {
-        UIApplication UIApp = null;
+        UIApplication _uiApp = null;
         Pipe SelPipe { get; set; }
 
         Viewport Viewport { get; set; }
@@ -30,8 +30,8 @@ namespace ZRQ.RevitTest.UIViewViewport
         {
             ShellUtils.Inst.Info("启动控制台");
 
-            UIApp = commandData.Application;
-            Document doc = UIApp.ActiveUIDocument.Document;
+            _uiApp = commandData.Application;
+            Document doc = _uiApp.ActiveUIDocument.Document;
             this.Doc = doc;
 
             Element element = doc.GetElement(new ElementId(223791));
@@ -46,30 +46,30 @@ namespace ZRQ.RevitTest.UIViewViewport
             XYZ selectPt = null;
             PreviewData previewData = new PreviewData();
 
-            using (DimJIGMng dimJIG = new DimJIGMng(UIApp, previewData))
+            using (DimJigMng dimJig = new DimJigMng(_uiApp, previewData))
             {
-                dimJIG.DrawJIGAction = DrawJIGAction;
-                selectPt = dimJIG.DoJIG();
+                dimJig.DrawJigAction = DrawJigAction;
+                selectPt = dimJig.DoJig();
             }
 
             return Result.Succeeded;
         }
 
-        private void DrawJIGAction(System.Windows.Forms.Form form, UIView activeUIView, System.Drawing.Point cursorPt, Data4DimBase data)
+        private void DrawJigAction(System.Windows.Forms.Form form, UIView activeUiView, System.Drawing.Point cursorPt, Data4DimBase data)
         {
             ShellUtils.Inst.Info("==================Start DrawJIGAction================");
             ShellUtils.Inst.Info($"{nameof(cursorPt)},x:{cursorPt.X},Y:{cursorPt.Y}");
 
 
             ShellUtils.Inst.Info("UIView:======");
-            Rectangle rectangle = activeUIView.GetWindowRectangle();
+            Rectangle rectangle = activeUiView.GetWindowRectangle();
             ShellUtils.Inst.Info($"{nameof(UIView)}Rectangle: \n" +
                 $"Rectangle.Bottom: {rectangle.Bottom}\n" +
                 $"Rectangle.Right: {rectangle.Right}\n" +
                 $"Rectangle.Top: {rectangle.Top}\n" +
                 $"Rectangle.Left: {rectangle.Left}\n");
 
-            var corners = activeUIView.GetZoomCorners();
+            var corners = activeUiView.GetZoomCorners();
             XYZ wLeftBottom = corners[0];
             XYZ wRightTop = corners[1];
             ShellUtils.Inst.Info($"View.GetZoomCorners: \n" +
@@ -100,7 +100,7 @@ namespace ZRQ.RevitTest.UIViewViewport
                 $"结束点: {endPt}");
 
             LocationPoint locationPoint = (this.Viewport.Location as LocationPoint);
-            Autodesk.Revit.DB.View activeGraphicalView = UIApp.ActiveUIDocument.ActiveGraphicalView;
+            Autodesk.Revit.DB.View activeGraphicalView = _uiApp.ActiveUIDocument.ActiveGraphicalView;
 
             XYZ viewSheetOrigin = this.ViewSheet.Origin;
             ShellUtils.Inst.Info($"viewSheetOrigin{viewSheetOrigin}");
@@ -108,7 +108,7 @@ namespace ZRQ.RevitTest.UIViewViewport
             //System.Drawing.Point screenPoint = UIViewTool.ViewPlan2Screen_noActiveView(spt, activeUIView, activeGraphicalView, this.Viewport, this.View, this.ViewSheet);
             //ShellUtils.Inst.Info($"起始点转到屏幕上的点{screenPoint}");
 
-            System.Drawing.Point screenPoint = UIViewTool.ViewPlan2Screen_ActiveView(spt, activeUIView, this.Viewport, this.View, this.ViewSheet);
+            System.Drawing.Point screenPoint = UiViewTool.ViewPlan2Screen_ActiveView(spt, activeUiView, this.Viewport, this.View, this.ViewSheet);
             ShellUtils.Inst.Info($"起始点转到屏幕上的点{screenPoint}");
 
 
@@ -124,7 +124,7 @@ namespace ZRQ.RevitTest.UIViewViewport
             HWTransCommon.Win32DllImport.Win32Window.ScreenToClient(form.Handle, ref cursorPt);
             points.Add(cursorPt);
 
-            System.Drawing.Pen drawPen = GetPenColor(UIApp);
+            System.Drawing.Pen drawPen = GetPenColor(_uiApp);
             using (System.Drawing.Graphics graphic = form.CreateGraphics())
             {
                 graphic.Clear(form.BackColor);

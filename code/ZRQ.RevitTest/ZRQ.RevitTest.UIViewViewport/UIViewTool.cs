@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ZRQ.RevitTest.UIViewViewport
 {
-    public class UIViewTool
+    public class UiViewTool
     {
 
         /// <summary>
@@ -29,8 +29,8 @@ namespace ZRQ.RevitTest.UIViewViewport
                     return;
                 }
 
-                IList<UIView> openUIViews = application.ActiveUIDocument.GetOpenUIViews();
-                foreach (UIView uiViewOther in openUIViews)
+                IList<UIView> openUiViews = application.ActiveUIDocument.GetOpenUIViews();
+                foreach (UIView uiViewOther in openUiViews)
                 {
                     if ((view == null) || (uiViewOther.ViewId.IntegerValue != view.Id.IntegerValue))
                     {
@@ -93,7 +93,7 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// </summary>
         /// <param name="uiapp"></param>
         /// <returns></returns>
-        static public UIView GetActiveUIView(UIApplication uiapp)
+        static public UIView GetActiveUiView(UIApplication uiapp)
         {
             if (uiapp == null ||
                 uiapp.ActiveUIDocument == null)
@@ -124,7 +124,7 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// <param name="iTop"></param>
         static public void GetCurrentViewLeftUpPos(UIApplication uiapp, ref int iLeft, ref int iTop)
         {
-            UIView uiview = GetActiveUIView(uiapp);
+            UIView uiview = GetActiveUiView(uiapp);
             if (uiview != null)
             {
 #if REVIT2014 || REVIT2015 || REVIT2016//2018/05/10 李马元 命名空间问题
@@ -174,25 +174,25 @@ namespace ZRQ.RevitTest.UIViewViewport
             transform.Origin = view.Origin;
 
             // 视口内视图
-            BoundingBoxUV Voln = view.Outline;
-            var Voln_cen = (Voln.Min + Voln.Max) / 2;
-            int Scale = view.Scale;
+            BoundingBoxUV voln = view.Outline;
+            var volnCen = (voln.Min + voln.Max) / 2;
+            int scale = view.Scale;
 
             // 视口相关
-            Outline VPoln = viewPort.GetBoxOutline();
-            XYZ VPcen = (VPoln.MaximumPoint + VPoln.MinimumPoint) / 2;
-            VPcen = new XYZ(VPcen.X, VPcen.Y, 0);
+            Outline vPoln = viewPort.GetBoxOutline();
+            XYZ vPcen = (vPoln.MaximumPoint + vPoln.MinimumPoint) / 2;
+            vPcen = new XYZ(vPcen.X, vPcen.Y, 0);
 
             // Correction offset from VCen to centre of Viewport in sheet coords 
-            XYZ Offset = VPcen - new XYZ(Voln_cen.U, Voln_cen.V, 0);
+            XYZ offset = vPcen - new XYZ(volnCen.U, volnCen.V, 0);
 
             // zrq: 开始做偏移处理
             realPtOnView = transform.Inverse.OfPoint(realPtOnView);
-            realPtOnView = realPtOnView.Multiply((double)1 / Scale);
-            realPtOnView = realPtOnView + Offset;
+            realPtOnView = realPtOnView.Multiply((double)1 / scale);
+            realPtOnView = realPtOnView + offset;
 
-            wLeftBottom = transform.Inverse.OfPoint(wLeftBottom).Multiply((double)1 / Scale);
-            wRightTop = transform.Inverse.OfPoint(wRightTop).Multiply((double)1 / Scale);
+            wLeftBottom = transform.Inverse.OfPoint(wLeftBottom).Multiply((double)1 / scale);
+            wRightTop = transform.Inverse.OfPoint(wRightTop).Multiply((double)1 / scale);
 
             // 计算预览线的一些东西
             var plane = PlaneExtension.CreatePlane(viewSheet.ViewDirection.Normalize(), PlaneExtension.GetProjectedOriginPoint(viewSheet.ViewDirection.Normalize(), wLeftBottom));
@@ -255,11 +255,11 @@ namespace ZRQ.RevitTest.UIViewViewport
             XYZ wLeftBottom = corners[0];
             XYZ wRightTop = corners[1];
 
-            var Orgin = view.Origin;
+            var orgin = view.Origin;
 
             var right = view.RightDirection;
-            Line lineup = Line.CreateUnbound(Orgin, view.UpDirection);
-            Line lineright = Line.CreateUnbound(Orgin, right);
+            Line lineup = Line.CreateUnbound(orgin, view.UpDirection);
+            Line lineright = Line.CreateUnbound(orgin, right);
 
             double wWidth = lineright.Project(wRightTop).XYZPoint.DistanceTo(lineright.Project(wLeftBottom).XYZPoint);
             double wHeight = lineup.Project(wRightTop).XYZPoint.DistanceTo(lineup.Project(wLeftBottom).XYZPoint);
@@ -302,22 +302,22 @@ namespace ZRQ.RevitTest.UIViewViewport
             transform.Origin = view.Origin;
 
             // 视口内视图
-            BoundingBoxUV Voln = view.Outline;
-            var Voln_cen = (Voln.Min + Voln.Max) / 2;
-            int Scale = view.Scale;
+            BoundingBoxUV voln = view.Outline;
+            var volnCen = (voln.Min + voln.Max) / 2;
+            int scale = view.Scale;
 
             // 视口相关
-            Outline VPoln = viewPort.GetBoxOutline();
-            XYZ VPcen = (VPoln.MaximumPoint + VPoln.MinimumPoint) / 2;
-            VPcen = new XYZ(VPcen.X, VPcen.Y, 0);
+            Outline vPoln = viewPort.GetBoxOutline();
+            XYZ vPcen = (vPoln.MaximumPoint + vPoln.MinimumPoint) / 2;
+            vPcen = new XYZ(vPcen.X, vPcen.Y, 0);
 
             // Correction offset from VCen to centre of Viewport in sheet coords 
-            XYZ Offset = VPcen - new XYZ(Voln_cen.U, Voln_cen.V, 0);
+            XYZ offset = vPcen - new XYZ(volnCen.U, volnCen.V, 0);
 
             // zrq: 开始做偏移处理
             realPtOnView = transform.Inverse.OfPoint(realPtOnView);
-            realPtOnView = realPtOnView.Multiply((double)1 / Scale);
-            realPtOnView = realPtOnView + Offset;
+            realPtOnView = realPtOnView.Multiply((double)1 / scale);
+            realPtOnView = realPtOnView + offset;
 
 
             // 计算预览线的一些东西
@@ -362,13 +362,13 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// 屏幕坐标到revit平面坐标转换
         /// 转化到xoy平面
         /// </summary>
-        /// <param name="_uiView"></param>
+        /// <param name="uiView"></param>
         /// <param name="screenPoint"></param>
         /// <returns></returns>
-        static public XYZ Screen2ViewPlan(UIView _uiView, System.Drawing.Point screenPoint)
+        static public XYZ Screen2ViewPlan(UIView uiView, System.Drawing.Point screenPoint)
         {
             //屏幕坐标
-            var rect = _uiView.GetWindowRectangle();
+            var rect = uiView.GetWindowRectangle();
             //屏幕比例
             double sWidht = rect.Right - rect.Left;
             double sHeight = rect.Bottom - rect.Top;
@@ -376,7 +376,7 @@ namespace ZRQ.RevitTest.UIViewViewport
             double widhtScale = (screenPoint.X - rect.Left) / sWidht;
             double heightScale = (rect.Bottom - screenPoint.Y) / sHeight;
 
-            var corners = _uiView.GetZoomCorners();
+            var corners = uiView.GetZoomCorners();
             XYZ wLeftBottom = corners[0];
             XYZ wRightTop = corners[1];
 
@@ -393,12 +393,12 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// revit平面坐标到屏幕坐标转化
         /// 老方法，只考虑了xoy平面
         /// </summary>
-        /// <param name="_uiView"></param>
+        /// <param name="uiView"></param>
         /// <param name="point"></param>
         /// <returns></returns>
-        static public System.Drawing.Point ViewPlan2Screen(UIView _uiView, XYZ point)
+        static public System.Drawing.Point ViewPlan2Screen(UIView uiView, XYZ point)
         {
-            var corners = _uiView.GetZoomCorners();
+            var corners = uiView.GetZoomCorners();
             XYZ wLeftBottom = corners[0];
             XYZ wRightTop = corners[1];
 
@@ -409,7 +409,7 @@ namespace ZRQ.RevitTest.UIViewViewport
             double heightScale = (point.Y - wLeftBottom.Y) / wHeight;
 
             //屏幕坐标
-            var rect = _uiView.GetWindowRectangle();
+            var rect = uiView.GetWindowRectangle();
             //屏幕比例
             double sWidht = rect.Right - rect.Left;
             double sHeight = rect.Bottom - rect.Top;
@@ -423,20 +423,20 @@ namespace ZRQ.RevitTest.UIViewViewport
         /// <summary>
         /// 获取revit工作区域的屏幕坐标
         /// </summary>
-        /// <param name="_uiView"></param>
+        /// <param name="uiView"></param>
         /// <param name="bottomLeft"></param>
         /// <param name="topRight"></param>
-        static public void GetWorkspaceRect(UIView _uiView, out System.Drawing.Point bottomLeft, out System.Drawing.Point topRight)
+        static public void GetWorkspaceRect(UIView uiView, out System.Drawing.Point bottomLeft, out System.Drawing.Point topRight)
         {
             XYZ wLeftBottom, wRightTop;
-            GetWorkspaceRect(_uiView, out wLeftBottom, out wRightTop);
+            GetWorkspaceRect(uiView, out wLeftBottom, out wRightTop);
 
-            bottomLeft = ViewPlan2Screen(_uiView, wLeftBottom);
-            topRight = ViewPlan2Screen(_uiView, wRightTop);
+            bottomLeft = ViewPlan2Screen(uiView, wLeftBottom);
+            topRight = ViewPlan2Screen(uiView, wRightTop);
         }
-        static void GetWorkspaceRect(UIView _uiView, out XYZ bottomLeft, out XYZ topRight)
+        static void GetWorkspaceRect(UIView uiView, out XYZ bottomLeft, out XYZ topRight)
         {
-            var corners = _uiView.GetZoomCorners();
+            var corners = uiView.GetZoomCorners();
 
             bottomLeft = corners[0];
             topRight = corners[1];

@@ -128,7 +128,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         private SchemaWrapper(Guid schemaId, AccessLevel readAccess, AccessLevel writeAccess, string vendorId, string applicationId, string schemaName, string schemaDescription)
         {
-            m_SchemaDataWrapper = new SchemaDataWrapper(schemaId, readAccess, writeAccess, vendorId, applicationId, schemaName, schemaDescription);
+            _mSchemaDataWrapper = new SchemaDataWrapper(schemaId, readAccess, writeAccess, vendorId, applicationId, schemaName, schemaDescription);
             SetRevitAssembly();
         }
 
@@ -145,13 +145,13 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// <summary>
         /// Adds a new field to the SchemaWrapper
         /// </summary>
-        /// <typeparam name="TypeName">Currently supported types:  int, short, float, double, bool, string, ElementId, XYZ, UV, Guid, Entity, IDictionary<>, IList<>.  IDictionary<> does not support floating point types, XYZ, UV, or Entity as Key parameters.</typeparam>
+        /// <typeparam name="TYpeName">Currently supported types:  int, short, float, double, bool, string, ElementId, XYZ, UV, Guid, Entity, IDictionary<>, IList<>.  IDictionary<> does not support floating point types, XYZ, UV, or Entity as Key parameters.</typeparam>
         /// <param name="name">The name of the field</param>
         /// <param name="unit">The unit type of the field.  Defintion required for floating point, XYZ, and UV types</param>
         /// <param name="subSchema">A subSchemaWrapper, if the field is of type Entity</param>
-        public void AddField<TypeName>(string name, UnitType unit, SchemaWrapper subSchema)
+        public void AddField<TYpeName>(string name, UnitType unit, SchemaWrapper subSchema)
         {
-            m_SchemaDataWrapper.AddData(name, typeof(TypeName), unit, subSchema);
+            _mSchemaDataWrapper.AddData(name, typeof(TYpeName), unit, subSchema);
         }
 #else
         /// <summary>
@@ -175,11 +175,11 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         {
 
             //Create the Autodesk.Revit.DB.ExtensibleStorage.SchemaBuilder that actually builds the schema
-            m_SchemaBuilder = new SchemaBuilder(new Guid(m_SchemaDataWrapper.SchemaId));
+            _mSchemaBuilder = new SchemaBuilder(new Guid(_mSchemaDataWrapper.SchemaId));
 
 
             //We will add a new field to our schema from each FieldData object in our SchemaWrapper
-            foreach (FieldData currentFieldData in m_SchemaDataWrapper.DataList)
+            foreach (FieldData currentFieldData in _mSchemaDataWrapper.DataList)
             {
 
                 //If the current field's type is a supported system type (int, string, etc...),
@@ -197,7 +197,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
                     try
                     {
                         //Get the field from the Revit API assembly.
-                        fieldType = m_Assembly.GetType(currentFieldData.Type);
+                        fieldType = _mAssembly.GetType(currentFieldData.Type);
                     }
 
                     catch (Exception exx)
@@ -232,16 +232,16 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
                     genericParams = fieldType.GetGenericArguments();  //Get the actual data type(s) stored in the field's IList<> or IDictionary<>
                     if (tGeneric == iDictionaryType)
                         //Pass the key and value type of our dictionary type to AddMapField.
-                        currentFieldBuilder = m_SchemaBuilder.AddMapField(currentFieldData.Name, genericParams[0], genericParams[1]);
+                        currentFieldBuilder = _mSchemaBuilder.AddMapField(currentFieldData.Name, genericParams[0], genericParams[1]);
                     else if (tGeneric == iListType)
                         //Pass the value type of our list type to AddArrayField.
-                        currentFieldBuilder = m_SchemaBuilder.AddArrayField(currentFieldData.Name, genericParams[0]);
+                        currentFieldBuilder = _mSchemaBuilder.AddArrayField(currentFieldData.Name, genericParams[0]);
                     else
                         throw new Exception("Generic type is neither IList<> nor IDictionary<>, cannot process.");
                 }
                 else
                     //The simpler case -- just add field using a name and a System.Type.
-                    currentFieldBuilder = m_SchemaBuilder.AddSimpleField(currentFieldData.Name, fieldType);
+                    currentFieldBuilder = _mSchemaBuilder.AddSimpleField(currentFieldData.Name, fieldType);
 
                 if (  //if we're dealing with an Entity as a simple field, map field, or list field and need to do recursion...
                     fieldType == typeof(Entity)
@@ -264,23 +264,23 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
             }
 
             //Set all the top level data in the schema we are generating.
-            m_SchemaBuilder.SetReadAccessLevel(Data.ReadAccess);
-            m_SchemaBuilder.SetWriteAccessLevel(Data.WriteAccess);
+            _mSchemaBuilder.SetReadAccessLevel(Data.ReadAccess);
+            _mSchemaBuilder.SetWriteAccessLevel(Data.WriteAccess);
             try
             {
-                m_SchemaBuilder.SetVendorId(Data.VendorId.ToUpper());
+                _mSchemaBuilder.SetVendorId(Data.VendorId.ToUpper());
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            m_SchemaBuilder.SetApplicationGUID(new Guid(Data.ApplicationId));
-            m_SchemaBuilder.SetDocumentation(Data.Documentation);
-            m_SchemaBuilder.SetSchemaName(Data.Name);
+            _mSchemaBuilder.SetApplicationGUID(new Guid(Data.ApplicationId));
+            _mSchemaBuilder.SetDocumentation(Data.Documentation);
+            _mSchemaBuilder.SetSchemaName(Data.Name);
 
 
             //Actually finish creating the Autodesk.Revit.DB.ExtensibleStorage.Schema.
-            m_Schema = m_SchemaBuilder.Finish();
+            _mSchema = _mSchemaBuilder.Finish();
         }
 
         /// <summary>
@@ -328,11 +328,11 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// <summary>
         /// Recursively gets all data from an Entity and appends it in string format to a StringBuilder.
         /// </summary>
-        /// <typeparam name="EntityType">A type parameter that will always be set to type "Entity" -- used to get around some type reflection limitations in .NET</typeparam>
+        /// <typeparam name="TEntityType">A type parameter that will always be set to type "Entity" -- used to get around some type reflection limitations in .NET</typeparam>
         /// <param name="storageEntity">The entity to query</param>
         /// <param name="schema">The schema of the Entity</param>
         /// <param name="strBuilder">The StringBuilder to append entity data to</param>
-        private void DumpAllSchemaEntityData<EntityType>(EntityType storageEntity, Schema schema, StringBuilder strBuilder)
+        private void DumpAllSchemaEntityData<TEntityType>(TEntityType storageEntity, Schema schema, StringBuilder strBuilder)
         {
             strBuilder.AppendLine("Schema/Entity Name: " + "" + ", Description: " + schema.Documentation + ", Id: " + schema.GUID.ToString() + ", Read Access: " + schema.ReadAccessLevel.ToString() + ", Write Access: " + schema.WriteAccessLevel.ToString());
             foreach (Field currentField in schema.ListFields())
@@ -376,12 +376,12 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// <summary>
         /// Recursively gets all data from a field and appends it in string format to a StringBuilder.
         /// </summary>
-        /// <typeparam name="KeyType">The key type of the field -- used only for maps</typeparam>
-        /// <typeparam name="FieldType">The data type of the field for simple types and arrays</typeparam>
+        /// <typeparam name="TKeyType">The key type of the field -- used only for maps</typeparam>
+        /// <typeparam name="TFieldType">The data type of the field for simple types and arrays</typeparam>
         /// <param name="field">The field to query</param>
         /// <param name="entity">The entity to query</param>
         /// <param name="strBuilder">The StringBuilder to append entity data to</param>
-        private void GetFieldDataAsString<KeyType, FieldType>(Field field, Entity entity, StringBuilder strBuilder)
+        private void GetFieldDataAsString<TKeyType, TFieldType>(Field field, Entity entity, StringBuilder strBuilder)
         {
             string fieldName = field.FieldName;
             Type fieldType = field.ValueType;
@@ -422,7 +422,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
             MethodInfo instantiatedGenericGetMethod = entity.GetType().GetMethod("Get", methodOverloadSelectionParams).MakeGenericMethod(methodGenericParameters);
             if (field.ContainerType == ContainerType.Simple)
             {
-                FieldType retval = (FieldType)instantiatedGenericGetMethod.Invoke(entity, invokeParams);
+                TFieldType retval = (TFieldType)instantiatedGenericGetMethod.Invoke(entity, invokeParams);
                 if (fieldType == typeof(Entity))
                 {
                     Schema subSchema = Schema.Lookup(field.SubSchemaGUID);
@@ -437,12 +437,12 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
             }
             else if (field.ContainerType == ContainerType.Array)
             {
-                IList<FieldType> listRetval = (IList<FieldType>)instantiatedGenericGetMethod.Invoke(entity, invokeParams);
+                IList<TFieldType> listRetval = (IList<TFieldType>)instantiatedGenericGetMethod.Invoke(entity, invokeParams);
                 if (fieldType == typeof(Entity))
                 {
                     strBuilder.AppendLine("Field: " + field.FieldName + ", Type: " + field.ValueType.ToString() + ", Value: " + " {SubEntity} " + ", Unit: " + GetUnitType(field).ToString() + ", ContainerType: " + field.ContainerType.ToString());
 
-                    foreach (FieldType fa in listRetval)
+                    foreach (TFieldType fa in listRetval)
                     {
                         strBuilder.Append("  Array Value: ");
                         DumpAllSchemaEntityData(fa, Schema.Lookup(field.SubSchemaGUID), strBuilder);
@@ -451,7 +451,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
                 else
                 {
                     strBuilder.AppendLine("Field: " + field.FieldName + ", Type: " + field.ValueType.ToString() + ", Value: " + " {Array} " + ", Unit: " + GetUnitType(field).ToString() + ", ContainerType: " + field.ContainerType.ToString());
-                    foreach (FieldType fa in listRetval)
+                    foreach (TFieldType fa in listRetval)
                     {
                         strBuilder.AppendLine("  Array value: " + fa.ToString());
                     }
@@ -460,11 +460,11 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
             else //Map
             {
                 strBuilder.AppendLine("Field: " + field.FieldName + ", Type: " + field.ValueType.ToString() + ", Value: " + " {Map} " + ", Unit: " + GetUnitType(field).ToString() + ", ContainerType: " + field.ContainerType.ToString());
-                IDictionary<KeyType, FieldType> mapRetval = (IDictionary<KeyType, FieldType>)instantiatedGenericGetMethod.Invoke(entity, invokeParams);
+                IDictionary<TKeyType, TFieldType> mapRetval = (IDictionary<TKeyType, TFieldType>)instantiatedGenericGetMethod.Invoke(entity, invokeParams);
                 if (fieldType == typeof(Entity))
                 {
                     strBuilder.AppendLine("Field: " + field.FieldName + ", Type: " + field.ValueType.ToString() + ", Value: " + " {SubEntity} " + ", Unit: " + GetUnitType(field).ToString() + ", ContainerType: " + field.ContainerType.ToString());
-                    foreach (FieldType fa in mapRetval.Values)
+                    foreach (TFieldType fa in mapRetval.Values)
                     {
                         strBuilder.Append("  Map Value: ");
                         DumpAllSchemaEntityData(fa, Schema.Lookup(field.SubSchemaGUID), strBuilder);
@@ -473,7 +473,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
                 else
                 {
                     strBuilder.AppendLine("Field: " + field.FieldName + ", Type: " + field.ValueType.ToString() + ", Value: " + " {Map} " + ", Unit: " + GetUnitType(field).ToString() + ", ContainerType: " + field.ContainerType.ToString());
-                    foreach (FieldType fa in mapRetval.Values)
+                    foreach (TFieldType fa in mapRetval.Values)
                     {
                         strBuilder.AppendLine("  Map value: " + fa.ToString());
                     }
@@ -499,7 +499,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         private void SetRevitAssembly()
         {
-            m_Assembly = Assembly.GetAssembly(typeof(XYZ));
+            _mAssembly = Assembly.GetAssembly(typeof(XYZ));
         }
 
         #endregion
@@ -510,13 +510,13 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// Gets the Autodesk.Revit.DB.ExtensibleStorage schema that the wrapper owns.
         /// </summary>
         /// <returns>An Autodesk.Revit.DB.ExtensibleStorage.Schema</returns>
-        public Schema GetSchema() { return m_Schema; }
+        public Schema GetSchema() { return _mSchema; }
 
         /// <summary>
         /// Sets the Autodesk.Revit.DB.ExtensibleStorage schema that the wrapper owns.
         /// </summary>
         /// <param name="schema">An Autodesk.Revit.DB.ExtensibleStorage.Schema</param>
-        public void SetSchema(Schema schema) { m_Schema = schema; }
+        public void SetSchema(Schema schema) { _mSchema = schema; }
 
 
         /// <summary>
@@ -524,8 +524,8 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public SchemaDataWrapper Data
         {
-            get { return m_SchemaDataWrapper; }
-            set { m_SchemaDataWrapper = value; }
+            get { return _mSchemaDataWrapper; }
+            set { _mSchemaDataWrapper = value; }
         }
 
         /// <summary>
@@ -533,7 +533,7 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public string GetXmlPath()
         {
-            return m_xmlPath;
+            return _mXmlPath;
         }
 
         /// <summary>
@@ -541,25 +541,25 @@ namespace ZRQ.RevitUtils.ExtensibleStorageUtils.SchemaWrapperTools
         /// </summary>
         public void SetXmlPath(string path)
         {
-            m_xmlPath = path;
+            _mXmlPath = path;
         }
 
         #endregion
 
         #region Data
-        private SchemaDataWrapper m_SchemaDataWrapper;
+        private SchemaDataWrapper _mSchemaDataWrapper;
 
         [NonSerialized]
-        private Schema m_Schema;
+        private Schema _mSchema;
 
         [NonSerialized]
-        private SchemaBuilder m_SchemaBuilder;
+        private SchemaBuilder _mSchemaBuilder;
 
         [NonSerialized]
-        private Assembly m_Assembly;
+        private Assembly _mAssembly;
 
         [NonSerialized]
-        private string m_xmlPath;
+        private string _mXmlPath;
         #endregion
 
     }

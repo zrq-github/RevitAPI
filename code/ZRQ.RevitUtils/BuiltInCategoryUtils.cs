@@ -1,11 +1,6 @@
 ﻿using Autodesk.Revit.DB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HWTransCommon.HWRevit
+namespace ZRQ.RevitUtils
 {
     /// <summary>
     /// revit BuiltInCategory 的一些操作
@@ -28,9 +23,9 @@ namespace HWTransCommon.HWRevit
         public static string ToZhCh(Autodesk.Revit.DB.BuiltInCategory builtInCategory)
         {
 #if REVIT2016 || REVIT2017 || REVIT2018 || REVIT2019 || REVIT2020
-            if (BuiltInCategory_Zh_CN.ContainsKey(builtInCategory))
+            if (builtInCategoryZhCn.ContainsKey(builtInCategory))
             {
-                return BuiltInCategory_Zh_CN[builtInCategory];
+                return builtInCategoryZhCn[builtInCategory];
             }
             return builtInCategory.ToString();
 #else
@@ -39,7 +34,7 @@ namespace HWTransCommon.HWRevit
         }
 
 #if REVIT2016 || REVIT2017 || REVIT2018 || REVIT2019 || REVIT2020
-        private static Dictionary<BuiltInCategory, string> BuiltInCategory_Zh_CN = new Dictionary<BuiltInCategory, string>()
+        private static Dictionary<BuiltInCategory, string> builtInCategoryZhCn = new Dictionary<BuiltInCategory, string>()
         {
             {BuiltInCategory.OST_CableTray,"电缆桥架"},
             {BuiltInCategory.OST_CableTrayFitting,"电缆桥架配件"},

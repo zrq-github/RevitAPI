@@ -16,7 +16,7 @@ namespace ZRQ.RevitTest.UIViewViewport
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
     public class 画视口中心点 : IExternalCommand
     {
-        UIApplication UIApp = null;
+        UIApplication _uiApp = null;
         Pipe SelPipe { get; set; }
         Viewport Viewport { get; set; }
 
@@ -26,8 +26,8 @@ namespace ZRQ.RevitTest.UIViewViewport
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            UIApp = commandData.Application;
-            Document doc = UIApp.ActiveUIDocument.Document;
+            _uiApp = commandData.Application;
+            Document doc = _uiApp.ActiveUIDocument.Document;
             this.Doc = doc;
 
             Element element = doc.GetElement(new ElementId(223791));
